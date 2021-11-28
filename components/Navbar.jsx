@@ -18,7 +18,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import { navLinks } from '../assets/data/navlinks';
 import { FcDocument } from 'react-icons/fc';
 import Link from 'next/link';
-import logo from '../assets/images/logo.svg';
+import { SiRakuten } from 'react-icons/si';
 
 export default function Navbar() {
     const { toggleColorMode: toggleMode } = useColorMode();
@@ -71,7 +71,9 @@ export default function Navbar() {
                     leftIcon={item.Icon}
                     key={item.id}
                 >
-                    <Link href={item.url}>{item.name}</Link>
+                    <Link fontFamily="'Open Sans', sans-serif" href={item.url}>
+                        {item.name}
+                    </Link>
                 </Button>
             ))}
             <Button
@@ -108,7 +110,11 @@ export default function Navbar() {
                     <Flex align='flex-start'>
                         <Link href='/' passHref>
                             <HStack>
-                                <Avatar size='sm' src={logo} alt='logo' />
+                                <Link href='/'>
+                                    <a>
+                                        <SiRakuten size='2rem' />
+                                    </a>
+                                </Link>
                             </HStack>
                         </Link>
                     </Flex>

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import { Layout } from '../components';
 import nProgress from 'nprogress';
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
     nProgress.configure({ showSpinner: false });
