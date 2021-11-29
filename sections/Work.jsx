@@ -105,7 +105,7 @@ export default function Work() {
         );
     };
     return (
-        <Container maxW='5xl'>
+        <Container maxW='5xl' my={8} as='section'>
             <Flex justifyContent='center' alignItems='center'>
                 <Box
                     py={12}
@@ -118,8 +118,8 @@ export default function Work() {
                             <chakra.p
                                 my={4}
                                 fontSize={{ base: '3xl', sm: '4xl' }}
-                                lineHeight='8'
-                                fontWeight='extrabold'
+                                lineHeight='9'
+                                fontWeight='bold'
                                 letterSpacing='tight'
                                 color={useColorModeValue('gray.900')}
                                 fontFamily='Open sans'

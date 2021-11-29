@@ -26,8 +26,7 @@ export default function Hero() {
                     <Heading
                         fontWeight={600}
                         fontSize={{
-                            base: '2xl',
-                            sm: '4xl',
+                            base: '6xl',
                             md: '6xl',
                             lg: '8xl',
                         }}
