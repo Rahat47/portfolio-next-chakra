@@ -13,56 +13,31 @@ import {
 } from '@chakra-ui/react';
 
 import { skills } from '../assets/data/skills';
-
-const Skill = ({ text, icon, iconBg }) => {
-    return (
-        <Stack direction={'row'} align={'center'}>
-            <Flex
-                w={8}
-                h={8}
-                align={'center'}
-                justify={'center'}
-                rounded={'full'}
-                bg={iconBg}
-            >
-                {icon}
-            </Flex>
-            <Text fontWeight={600}>{text}</Text>
-        </Stack>
-    );
-};
+import { SectionHeading, Skill } from '../components';
 
 export default function About() {
     return (
         <Container maxW={'5xl'} py={12}>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <Stack spacing={4}>
-                    <Text
-                        textTransform={'uppercase'}
-                        color={'blue.400'}
-                        fontWeight={600}
-                        fontSize={'sm'}
-                        bg={useColorModeValue('blue.50', 'blue.900')}
-                        p={2}
-                        alignSelf={'flex-start'}
-                        rounded={'md'}
-                    >
-                        About Me
-                    </Text>
+                    <SectionHeading title='About Me' />
                     <Heading>Rayhan Hossain Rahat</Heading>
                     <Text
                         fontFamily='Open sans'
                         color={'gray.500'}
-                        fontSize={'md'}
+                        fontSize={'lg'}
                         lineHeight={'150%'}
                     >
                         Hello! My name is Rahat and I enjoy creating things that
                         live on the internet. My love for computer and Internet
-                        was from chilhood. My interest in web development
-                        started back in 2019, When the pandemic hit the world
-                        really bad, Schools colleges all were off, I took that
-                        time to finally go for the career I always wanted. Turns
-                        out JavaScript became my new love.
+                        was from chilhood.
+                        <br />
+                        <br />
+                        My interest in web development started back in 2019,
+                        When the pandemic hit the world really bad, Schools
+                        colleges all were off, I took that time to finally go
+                        for the career I always wanted. Turns out JavaScript
+                        became my new love.
                         <br /> <br />
                         Fast-forward to today, and I’ve had the privilege of
                         working at some start-up, My main focus these days is
