@@ -105,7 +105,7 @@ export default function Work() {
         );
     };
     return (
-        <Container maxW='5xl' my={8} as='section'>
+        <Container maxW='7xl' my={8} as='section'>
             <Flex justifyContent='center' alignItems='center'>
                 <Box
                     py={12}

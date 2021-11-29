@@ -1,14 +1,12 @@
 import { Box, chakra, SimpleGrid } from '@chakra-ui/react';
-import { BsPerson } from 'react-icons/bs';
-import { FiServer } from 'react-icons/fi';
-import { GoLocation } from 'react-icons/go';
+import { FcCommandLine, FcGlobe, FcInspection } from 'react-icons/fc';
 import { StatsCard } from '../components';
 
 export default function WorkStats() {
     return (
         <Box
             as='section'
-            maxW='5xl'
+            maxW='6xl'
             mb={5}
             mx={'auto'}
             px={{ base: 2, sm: 12, md: 17 }}
@@ -30,19 +28,19 @@ export default function WorkStats() {
                     title={'Projects'}
                     stat={85}
                     suffix={' +'}
-                    icon={<BsPerson size={'3em'} />}
+                    icon={<FcInspection size={'3em'} />}
                 />
                 <StatsCard
                     title={'Lines Of Code'}
                     stat={50000}
                     suffix={' +'}
-                    icon={<FiServer size={'3em'} />}
+                    icon={<FcCommandLine size={'3em'} />}
                 />
                 <StatsCard
                     title={'Made Dream Projects For'}
                     stat={13}
                     suffix={' Clients'}
-                    icon={<GoLocation size={'3em'} />}
+                    icon={<FcGlobe size={'3em'} />}
                 />
             </SimpleGrid>
         </Box>

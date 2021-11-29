@@ -17,7 +17,7 @@ import { SectionHeading, Skill } from '../components';
 
 export default function About() {
     return (
-        <Container maxW={'5xl'} py={12} as='section'>
+        <Container maxW={'7xl'} py={12} as='section'>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <Stack spacing={4}>
                     <SectionHeading title='About Me' />
