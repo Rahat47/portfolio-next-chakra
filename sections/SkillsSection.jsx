@@ -23,7 +23,21 @@ export default function SkillsSection() {
             p={50}
             alignItems='center'
             justifyContent='center'
+            direction='column'
         >
+            <Heading
+                as='h1'
+                fontSize='5xl'
+                fontWeight='bold'
+                color={useColorModeValue('black', 'white')}
+                fontFamily='Poppins'
+                mb='20'
+                bgGradient='linear(to-r, green.400, blue.500)'
+                bgClip='text'
+            >
+                Tools I Use
+            </Heading>
+
             <SimpleGrid
                 columns={[1, , 2]}
                 gap='24px'
@@ -33,18 +47,11 @@ export default function SkillsSection() {
                 <Box
                     bg={useColorModeValue('white', 'gray.800')}
                     px={4}
-                    py={20}
+                    py={12}
                     shadow='base'
                     rounded='md'
                     minW='md'
                 >
-                    <Heading
-                        fontSize='3xl'
-                        color={useColorModeValue('#2D3748', 'white')}
-                        mb={4}
-                    >
-                        Tools I use
-                    </Heading>
                     <chakra.p
                         mb={1}
                         fontSize='xs'
@@ -82,17 +89,10 @@ export default function SkillsSection() {
                 <Box
                     bg={useColorModeValue('white', 'gray.800')}
                     px={4}
-                    py={20}
+                    py={12}
                     shadow='base'
                     rounded='md'
                 >
-                    <Heading
-                        fontSize='3xl'
-                        color={useColorModeValue('#2D3748', 'white')}
-                        mb={4}
-                    >
-                        Tools I use
-                    </Heading>
                     <chakra.p
                         mb={1}
                         fontSize='xs'

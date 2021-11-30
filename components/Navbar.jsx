@@ -10,7 +10,7 @@ import {
     VStack,
     Button,
     useColorMode,
-    Avatar,
+    Fade,
 } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -44,47 +44,52 @@ export default function Navbar() {
     };
 
     const MobileNavContent = (
-        <VStack
-            pos='absolute'
-            top={0}
-            left={0}
-            right={0}
-            display={mobileNav.isOpen ? 'flex' : 'none'}
-            flexDirection='column'
-            p={2}
-            pb={4}
-            m={2}
-            bg={bg}
-            spacing={3}
-            rounded='sm'
-            shadow='sm'
-        >
-            <CloseButton
-                aria-label='Close menu'
-                justifySelf='self-start'
-                onClick={mobileNav.onClose}
-            />
-            {navLinks.map(item => (
+        <Fade in={mobileNav.isOpen}>
+            <VStack
+                pos='absolute'
+                top={0}
+                left={0}
+                right={0}
+                display={mobileNav.isOpen ? 'flex' : 'none'}
+                flexDirection='column'
+                p={2}
+                pb={4}
+                m={2}
+                bg={bg}
+                spacing={3}
+                rounded='sm'
+                shadow='sm'
+            >
+                <CloseButton
+                    aria-label='Close menu'
+                    justifySelf='self-start'
+                    onClick={mobileNav.onClose}
+                />
+                {navLinks.map(item => (
+                    <Button
+                        w='full'
+                        variant='ghost'
+                        leftIcon={item.Icon}
+                        key={item.id}
+                    >
+                        <Link
+                            fontFamily="'Open Sans', sans-serif"
+                            href={item.url}
+                        >
+                            {item.name}
+                        </Link>
+                    </Button>
+                ))}
                 <Button
                     w='full'
-                    variant='ghost'
-                    leftIcon={item.Icon}
-                    key={item.id}
+                    onClick={downloadResume}
+                    color={text}
+                    leftIcon={<FcDocument />}
                 >
-                    <Link fontFamily="'Open Sans', sans-serif" href={item.url}>
-                        {item.name}
-                    </Link>
+                    Resume
                 </Button>
-            ))}
-            <Button
-                w='full'
-                onClick={downloadResume}
-                color={text}
-                leftIcon={<FcDocument />}
-            >
-                Resume
-            </Button>
-        </VStack>
+            </VStack>
+        </Fade>
     );
     return (
         <chakra.header
