@@ -3,6 +3,7 @@ import CTA from '../sections/CTA';
 import Work from '../sections/Work';
 import WorkStats from '../sections/WorkStats';
 import Head from 'next/head';
+import SkillsSection from '../sections/SkillsSection';
 const AboutPage = () => {
     return (
         <>
@@ -11,6 +12,7 @@ const AboutPage = () => {
             </Head>
             <About />
             <Work />
+            <SkillsSection />
             <WorkStats />
             <CTA />
         </>

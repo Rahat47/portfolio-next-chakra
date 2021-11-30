@@ -1,5 +1,6 @@
 import ProjectsHero from '../../sections/ProjectsHero';
 import Head from 'next/head';
+import FeaturedWorks from '../../sections/FeaturedWorks';
 
 const ProjectPage = () => {
     return (
@@ -9,6 +10,7 @@ const ProjectPage = () => {
             </Head>
 
             <ProjectsHero />
+            <FeaturedWorks />
         </>
     );
 };
