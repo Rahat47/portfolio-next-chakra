@@ -14,6 +14,7 @@ import { MdOutlineDesignServices } from 'react-icons/md';
 import { VscServerProcess } from 'react-icons/vsc';
 import { backendSkills, frontendSkills } from '../assets/data/skills';
 import { Tech } from '../components';
+import { AiFillExclamationCircle } from 'react-icons/ai';
 
 export default function SkillsSection() {
     return (
@@ -39,18 +40,23 @@ export default function SkillsSection() {
             </Heading>
 
             <SimpleGrid
-                columns={[1, , 2]}
+                columns={{
+                    base: 1,
+                    md: 2,
+                }}
                 gap='24px'
                 mx='auto'
                 textAlign={['left', , 'center']}
             >
-                <Box
+                <Flex
                     bg={useColorModeValue('white', 'gray.800')}
                     px={4}
                     py={12}
                     shadow='base'
                     rounded='md'
-                    minW='md'
+                    direction='column'
+                    justifyItems='center'
+                    alignItems='center'
                 >
                     <chakra.p
                         mb={1}
@@ -68,10 +74,20 @@ export default function SkillsSection() {
                         fontWeight={['bold', 'extrabold']}
                         color={useColorModeValue('gray.900', 'gray.50')}
                         lineHeight='tight'
+                        w='full'
+                        textAlign='center'
+                        _after={{
+                            content: '""',
+                            display: 'block',
+                            width: '100%',
+                            height: '1px',
+                            background: useColorModeValue('gray.500', 'white'),
+                            margin: '0 auto',
+                            marginBottom: '1rem',
+                        }}
                     >
                         <Icon as={MdOutlineDesignServices} />
                     </Text>
-                    <hr />
                     <Stack
                         mt={4}
                         spacing={5}
@@ -84,14 +100,17 @@ export default function SkillsSection() {
                             <Tech key={skill.key} skill={skill} />
                         ))}
                     </Stack>
-                </Box>
+                </Flex>
 
-                <Box
+                <Flex
                     bg={useColorModeValue('white', 'gray.800')}
                     px={4}
                     py={12}
                     shadow='base'
                     rounded='md'
+                    direction='column'
+                    justifyItems='center'
+                    alignItems='center'
                 >
                     <chakra.p
                         mb={1}
@@ -109,6 +128,17 @@ export default function SkillsSection() {
                         fontWeight={['bold', 'extrabold']}
                         color={useColorModeValue('gray.900', 'gray.50')}
                         lineHeight='tight'
+                        w='full'
+                        textAlign='center'
+                        _after={{
+                            content: '""',
+                            display: 'block',
+                            width: '100%',
+                            height: '1px',
+                            background: useColorModeValue('gray.500', 'white'),
+                            margin: '0 auto',
+                            marginBottom: '1rem',
+                        }}
                     >
                         <Icon as={VscServerProcess} />
                     </Text>
@@ -125,7 +155,7 @@ export default function SkillsSection() {
                             <Tech key={skill.key} skill={skill} />
                         ))}
                     </Stack>
-                </Box>
+                </Flex>
             </SimpleGrid>
         </Flex>
     );

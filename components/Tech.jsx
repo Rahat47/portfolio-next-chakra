@@ -17,19 +17,19 @@ const Tech = ({ skill }) => {
             }}
             fontSize='lg'
             columns={2}
-            spacingX={20}
+            spacingX={{
+                base: '1rem',
+                md: '2rem',
+            }}
         >
-            <Flex shrink={1}>
-                <Icon
-                    boxSize={8}
-                    mt={1}
-                    mr={2}
-                    color={useColorModeValue('brand.500', 'brand.300')}
-                    viewBox='0 0 20 20'
-                    fill='currentColor'
-                    as={skill.Icon}
-                />
-            </Flex>
+            <Icon
+                boxSize={8}
+                mt={1}
+                color={useColorModeValue('brand.500', 'brand.300')}
+                viewBox='0 0 20 20'
+                fill='currentColor'
+                as={skill.Icon}
+            />
             <Box>
                 <chakra.span mt={2} color='inherit'>
                     {skill.name}
