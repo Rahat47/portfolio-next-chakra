@@ -23,7 +23,7 @@ const ProjectsHero = () => {
             <Box
                 w={{ base: 'full', md: 11 / 12, xl: 9 / 12 }}
                 mx='auto'
-                textAlign={{ base: 'left', md: 'center' }}
+                textAlign={'center'}
             >
                 <Heading
                     mb={6}
@@ -110,7 +110,7 @@ const ProjectsHero = () => {
                     blurDataURL={projectImg}
                     placeholder='blur'
                     src={projectImg}
-                    alt='Hellonext feedback boards software screenshot'
+                    alt='Rahat github profile Screen Shot'
                 />
             </Box>
         </Box>

@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <Box maxW='1280px' m='auto'>
+            <Box maxW='8xl' m='auto'>
                 <header>
                     <Navbar />
                 </header>

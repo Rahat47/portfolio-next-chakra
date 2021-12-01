@@ -1,6 +1,6 @@
-import { Container, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { Container, Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import { ProjectCard } from '../components';
+import { HeadingBB, ProjectCard } from '../components';
 
 const FeaturedWorks = () => {
     return (
@@ -11,31 +11,7 @@ const FeaturedWorks = () => {
             as='section'
             rounded='sm'
         >
-            <Text
-                fontSize={{ base: '2xl', md: '5xl' }}
-                color={useColorModeValue('black', 'white')}
-                fontWeight='bold'
-                fontFamily='Roboto'
-                textAlign='center'
-                mb={8}
-                _after={{
-                    content: '""',
-                    display: 'block',
-                    width: '100%',
-                    height: '1px',
-                    background: useColorModeValue('gray.500', 'white'),
-                    margin: '0 auto',
-                    marginBottom: '1rem',
-                }}
-            >
-                Featured
-                <Text
-                    as='span'
-                    color={useColorModeValue('orange.400', 'blue.400')}
-                >
-                    &nbsp;Projects
-                </Text>
-            </Text>
+            <HeadingBB text='Featured' coloredText='Projects' />
 
             <Flex direction='column'>
                 <ProjectCard />

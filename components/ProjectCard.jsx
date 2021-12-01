@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    chakra,
+    Text,
     Box,
     Image,
     Flex,
@@ -9,10 +9,15 @@ import {
     HStack,
     Link as ChakraLink,
     Button,
+    Stack,
+    useBreakpointValue,
+    IconButton,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { BiDetail } from 'react-icons/bi';
 import { backgrounds } from '../assets/data/backgroundsGradient';
+import router from 'next/router';
 
 const ProjectCard = ({ project }) => {
     const randomNumber = () => {
@@ -107,7 +112,8 @@ const ProjectCard = ({ project }) => {
                                 A super cool project
                             </ChakraLink>
                         </Link>
-                        <chakra.p
+                        <Text
+                            as='p'
                             mt={2}
                             fontSize='sm'
                             color={useColorModeValue('gray.600', 'gray.400')}
@@ -117,32 +123,68 @@ const ProjectCard = ({ project }) => {
                             Natoque sem et aliquam mauris egestas quam volutpat
                             viverra. In pretium nec senectus erat. Et malesuada
                             lobortis
-                        </chakra.p>
+                        </Text>
                     </Box>
 
                     <Box mt={4}>
-                        <Flex alignItems='center'>
-                            <HStack>
-                                <Button
-                                    as='a'
-                                    href='https://github.com/Rahat47'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    rightIcon={<FaGithub />}
-                                >
-                                    View Source
-                                </Button>
+                        <Flex
+                            alignItems='center'
+                            justify={{
+                                base: 'center',
+                                md: 'flex-start',
+                            }}
+                        >
+                            <Stack wrap='wrap' direction='row'>
+                                {useBreakpointValue({
+                                    base: <IconButton icon={<FaGithub />} />,
+                                    md: (
+                                        <Button
+                                            as='a'
+                                            href='https://github.com/Rahat47'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            rightIcon={<FaGithub />}
+                                        >
+                                            View Source
+                                        </Button>
+                                    ),
+                                })}
 
-                                <Button
-                                    as='a'
-                                    href='https://github.com/Rahat47'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    rightIcon={<FaExternalLinkAlt />}
-                                >
-                                    Live
-                                </Button>
-                            </HStack>
+                                {useBreakpointValue({
+                                    base: (
+                                        <IconButton
+                                            icon={<FaExternalLinkAlt />}
+                                        />
+                                    ),
+                                    md: (
+                                        <Button
+                                            as='a'
+                                            href='https://github.com/Rahat47'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            rightIcon={<FaExternalLinkAlt />}
+                                        >
+                                            Live
+                                        </Button>
+                                    ),
+                                })}
+
+                                {useBreakpointValue({
+                                    base: <IconButton icon={<BiDetail />} />,
+                                    md: (
+                                        <Button
+                                            onClick={() =>
+                                                router.push(
+                                                    '/project/project-slug'
+                                                )
+                                            }
+                                            rightIcon={<BiDetail />}
+                                        >
+                                            View Details
+                                        </Button>
+                                    ),
+                                })}
+                            </Stack>
                         </Flex>
                     </Box>
                 </Box>
