@@ -1,4 +1,4 @@
-import { Container, SimpleGrid } from '@chakra-ui/react';
+import { Container, SimpleGrid, Center, Button } from '@chakra-ui/react';
 import { HeadingBB, ProjectCardSm } from '../components';
 const MoreProjects = () => {
     return (
@@ -13,6 +13,9 @@ const MoreProjects = () => {
                 <ProjectCardSm />
                 <ProjectCardSm />
             </SimpleGrid>
+            <Center>
+                <Button variant='link'>Load More</Button>
+            </Center>
         </Container>
     );
 };

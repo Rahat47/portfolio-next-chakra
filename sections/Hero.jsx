@@ -69,8 +69,8 @@ export default function Hero() {
                                 bg: 'green.500',
                             }}
                         >
-                            <Link href='/contact'>
-                                <a>Contact Now</a>
+                            <Link href='/projects'>
+                                <a>Explore More</a>
                             </Link>
                         </Button>
                         <Button
@@ -102,7 +102,7 @@ export default function Hero() {
                                 top={'-15px'}
                                 transform={'rotate(10deg)'}
                             >
-                                Available for freelance work
+                                I do Freelance Work
                             </Text>
                         </Box>
                     </Stack>
