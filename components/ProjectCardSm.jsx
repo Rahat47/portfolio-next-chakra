@@ -1,16 +1,20 @@
+import router from 'next/router';
 import {
     Box,
     Center,
-    Heading,
+    IconButton,
     Text,
     Image,
     Stack,
-    Avatar,
     useColorModeValue,
     Tag,
     Link as ChakraLink,
+    Flex,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import { AiOutlineRightSquare } from 'react-icons/ai';
+import { BiLinkExternal } from 'react-icons/bi';
+import { FaGithub } from 'react-icons/fa';
 
 export default function ProjectCardSm() {
     return (
@@ -41,19 +45,30 @@ export default function ProjectCardSm() {
                         alt='some image'
                     />
                 </Box>
-                <Stack>
-                    <Text>
-                        <Tag
-                            textTransform={'uppercase'}
-                            fontFamily='Roboto'
-                            fontSize={'sm'}
-                            letterSpacing={1.1}
-                            colorScheme='red'
-                            variant='solid'
-                        >
-                            Frontend
-                        </Tag>
-                    </Text>
+                <Stack spacing='4'>
+                    <Flex justify='space-between'>
+                        <Text>
+                            <Tag
+                                textTransform={'uppercase'}
+                                fontFamily='Roboto'
+                                fontSize={'sm'}
+                                colorScheme='green'
+                            >
+                                Frontend
+                            </Tag>
+                        </Text>
+
+                        <Text>
+                            <Tag
+                                textTransform={'uppercase'}
+                                fontFamily='Roboto'
+                                fontSize={'sm'}
+                                colorScheme='blue'
+                            >
+                                {new Date().toLocaleDateString()}
+                            </Tag>
+                        </Text>
+                    </Flex>
                     <Link href='/projects/project-slug' passHref>
                         <ChakraLink
                             color={useColorModeValue('gray.700', 'white')}
@@ -69,6 +84,29 @@ export default function ProjectCardSm() {
                         dolore magna aliquyam erat, sed diam voluptua. At vero
                         eos et accusam et justo duo dolores et ea rebum.
                     </Text>
+
+                    <Stack isInline justify='center'>
+                        <IconButton
+                            as='a'
+                            href='https://github.com/Rahat47'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            icon={<FaGithub />}
+                        />
+                        <IconButton
+                            as='a'
+                            href='https://github.com/Rahat47'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            icon={<BiLinkExternal />}
+                        />
+                        <IconButton
+                            onClick={() =>
+                                router.push('/projects/project-slug')
+                            }
+                            icon={<AiOutlineRightSquare />}
+                        />
+                    </Stack>
                 </Stack>
             </Box>
         </Center>

@@ -36,7 +36,7 @@ const ProjectCard = ({ project }) => {
             alignItems='center'
             justifyContent='center'
             zIndex={1}
-            my={10}
+            my={5}
         >
             <Box
                 position='relative'
