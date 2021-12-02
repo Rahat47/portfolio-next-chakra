@@ -11,14 +11,23 @@ import {
     useBreakpointValue,
     Icon,
     VStack,
+    useToast,
 } from '@chakra-ui/react';
 
 import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 
 import { MessageForm } from '../components';
 import { avatars } from '../assets/data/avatars';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default function ContactForm() {
+    const toast = useToast({
+        position: 'top',
+        isClosable: true,
+        duration: 3000,
+        variant: 'solid',
+    });
+
     return (
         <Box position={'relative'} as='section'>
             <Container
@@ -77,23 +86,52 @@ export default function ContactForm() {
                         spacing={3}
                         alignItems='flex-start'
                     >
-                        <Button
-                            size='md'
-                            variant='ghost'
-                            leftIcon={<MdPhone size='20px' />}
-                            colorScheme='red'
+                        <CopyToClipboard
+                            text='+880-1626845767'
+                            onCopy={() =>
+                                toast({
+                                    title: 'Copied to clipboard',
+                                    description:
+                                        '+880-1626845767 successfully copied to clipboard',
+                                    status: 'success',
+                                })
+                            }
                         >
-                            +880-1626845767
-                        </Button>
-                        <Button
-                            size='md'
-                            variant='ghost'
-                            leftIcon={<MdEmail size='20px' />}
-                            colorScheme='yellow'
+                            <Button
+                                size='md'
+                                variant='ghost'
+                                leftIcon={<MdPhone size='20px' />}
+                                colorScheme='red'
+                            >
+                                +880-1626845767
+                            </Button>
+                        </CopyToClipboard>
+                        <CopyToClipboard
+                            text='djrayhan8@gmail.com'
+                            onCopy={() =>
+                                toast({
+                                    title: 'Copied to clipboard',
+                                    description:
+                                        ' djrayhan8@gmail.com successfully copied to clipboard',
+                                    status: 'success',
+                                })
+                            }
                         >
-                            djrayhan8@gmail.com
-                        </Button>
+                            <Button
+                                size='md'
+                                variant='ghost'
+                                leftIcon={<MdEmail size='20px' />}
+                                colorScheme='yellow'
+                            >
+                                djrayhan8@gmail.com
+                            </Button>
+                        </CopyToClipboard>
+
                         <Button
+                            as='a'
+                            href='https://goo.gl/maps/bKcLSe7zDkHxwhw26'
+                            target='_blank'
+                            rel='noopener noreferrer'
                             size='md'
                             colorScheme='green'
                             variant='ghost'
@@ -117,13 +155,13 @@ export default function ContactForm() {
                             lineHeight={1.1}
                             fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
                         >
-                            Want to get in touch?
+                            Want to leave a message
                             <Text
                                 as={'span'}
                                 bgGradient='linear(to-r, red.400,pink.400)'
                                 bgClip='text'
                             >
-                                !
+                                ?
                             </Text>
                         </Heading>
                         <Text

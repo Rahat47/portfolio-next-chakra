@@ -8,13 +8,37 @@ import {
     Input,
     Button,
     Textarea,
+    useToast,
 } from '@chakra-ui/react';
 import { MdEmail, MdPhone } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 
 const MessageForm = () => {
+    const toast = useToast({
+        position: 'top',
+        duration: 10000,
+        isClosable: true,
+        variant: 'solid',
+    });
+
+    const handleSubmit = e => {
+        // Prevent the default form submission
+        e.preventDefault();
+
+        // show a toast message
+        toast({
+            title: 'Thank you!',
+            description:
+                'Thank you for taking your time to fill the form. Unfortunately, no message will be sent right now. I am still working on this project, so please check back soon.',
+            status: 'info',
+        });
+
+        // clear the form
+        e.target.reset();
+    };
+
     return (
-        <Box as='form' mt={10}>
+        <Box onSubmit={handleSubmit} as='form' mt={10}>
             <Stack spacing={4}>
                 <FormControl isRequired>
                     <FormLabel color='gray.900'>First Name</FormLabel>
@@ -30,6 +54,7 @@ const MessageForm = () => {
                             _placeholder={{
                                 color: 'gray.500',
                             }}
+                            name='firstName'
                         />
                     </InputGroup>
                 </FormControl>
@@ -48,6 +73,7 @@ const MessageForm = () => {
                                 color: 'gray.500',
                             }}
                             type='email'
+                            name='email'
                         />
                     </InputGroup>
                 </FormControl>
@@ -65,6 +91,7 @@ const MessageForm = () => {
                             _placeholder={{
                                 color: 'gray.500',
                             }}
+                            name='phone'
                         />
                     </InputGroup>
                 </FormControl>
@@ -79,6 +106,7 @@ const MessageForm = () => {
                         _placeholder={{
                             color: 'gray.500',
                         }}
+                        name='message'
                     />
                 </FormControl>
             </Stack>
@@ -86,10 +114,14 @@ const MessageForm = () => {
                 fontFamily={'Open Sans'}
                 mt={8}
                 w={'full'}
-                bgGradient='linear(to-r, red.400,pink.400)'
+                bgGradient='linear(to-r, red.400, pink.400)'
                 color={'white'}
                 _hover={{
-                    bgGradient: 'linear(to-r, red.400,pink.400)',
+                    bgGradient: 'linear(to-r, red.400, pink.400)',
+                    boxShadow: 'xl',
+                }}
+                _active={{
+                    bgGradient: 'linear(to-r, red.400, pink.400)',
                     boxShadow: 'xl',
                 }}
                 type='submit'

@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import { RiExternalLinkLine } from 'react-icons/ri';
+import { ContactSocialHandle } from '../components';
 
 const ContactHero = () => {
     const bg = useColorModeValue('white', 'gray.800');
@@ -99,39 +100,8 @@ const ContactHero = () => {
                                 learn new things and share my knowledge with
                                 others.
                             </Text>
-                            <Stack
-                                direction={['column', 'row']}
-                                mt={{ base: 5, sm: 8 }}
-                                justifyContent={{ sm: 'center', lg: 'start' }}
-                                spacing={4}
-                            >
-                                <Button
-                                    as='a'
-                                    href='https://www.fiverr.com/rh_rahat_47?up_rollout=true'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    colorScheme='green'
-                                    size='lg'
-                                    rounded='full'
-                                    variant='ghost'
-                                    rightIcon={<RiExternalLinkLine />}
-                                >
-                                    Fiverr
-                                </Button>
-                                <Button
-                                    as='a'
-                                    href='https://www.linkedin.com/in/rh-rahat/'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    colorScheme='linkedin'
-                                    size='lg'
-                                    rounded='full'
-                                    variant='ghost'
-                                    rightIcon={<RiExternalLinkLine />}
-                                >
-                                    LinkedIn
-                                </Button>
-                            </Stack>
+
+                            <ContactSocialHandle />
                         </Box>
                     </Box>
                 </Box>
