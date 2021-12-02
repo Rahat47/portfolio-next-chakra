@@ -1,65 +1,22 @@
 import {
     Box,
-    Flex,
     Stack,
     Heading,
     Text,
     Container,
-    Input,
     Button,
     SimpleGrid,
     Avatar,
     AvatarGroup,
     useBreakpointValue,
     Icon,
-    FormControl,
-    FormLabel,
-    Textarea,
     VStack,
 } from '@chakra-ui/react';
 
-import {
-    MdEmail,
-    MdLocationOn,
-    MdOutlineFacebook,
-    MdPhone,
-} from 'react-icons/md';
-import { BsInstagram, BsTwitter } from 'react-icons/bs';
-import { VscGithubAlt } from 'react-icons/vsc';
-import { IoMailOutline } from 'react-icons/io5';
+import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 
-const avatars = [
-    {
-        name: 'Facebook',
-        url: 'https://www.facebook.com/',
-        icon: <MdOutlineFacebook />,
-        color: '#1877F2',
-    },
-    {
-        name: 'Twitter',
-        url: 'https://twitter.com/',
-        icon: <BsTwitter />,
-        color: '#1DA1F2',
-    },
-    {
-        name: 'Github',
-        url: 'https://github.com/Rahat47',
-        icon: <VscGithubAlt />,
-        color: '#181717',
-    },
-    {
-        name: 'Instagram',
-        url: 'https://www.instagram.com/',
-        icon: <BsInstagram />,
-        color: '#E4405F',
-    },
-    {
-        name: 'Email',
-        url: 'mailto:djrayhan8@gmail.com',
-        icon: <IoMailOutline />,
-        color: '#0077B5',
-    },
-];
+import { MessageForm } from '../components';
+import { avatars } from '../assets/data/avatars';
 
 export default function ContactForm() {
     return (
@@ -178,77 +135,7 @@ export default function ContactForm() {
                             collaborations. I look forward to hearing from you.
                         </Text>
                     </Stack>
-                    <Box as='form' mt={10}>
-                        <Stack spacing={4}>
-                            <FormControl isRequired>
-                                <FormLabel color='gray.900'>
-                                    First Name
-                                </FormLabel>
-                                <Input
-                                    placeholder='Firstname'
-                                    bg={'gray.100'}
-                                    border={0}
-                                    color={'gray.500'}
-                                    _placeholder={{
-                                        color: 'gray.500',
-                                    }}
-                                />
-                            </FormControl>
-                            <FormControl isRequired>
-                                <FormLabel color='gray.900'>Email</FormLabel>
-                                <Input
-                                    placeholder='firstname@lastname.io'
-                                    bg={'gray.100'}
-                                    border={0}
-                                    color={'gray.500'}
-                                    _placeholder={{
-                                        color: 'gray.500',
-                                    }}
-                                    type='email'
-                                />{' '}
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel color='gray.900'>Phone</FormLabel>
-                                <Input
-                                    placeholder='phone number'
-                                    bg={'gray.100'}
-                                    border={0}
-                                    color={'gray.500'}
-                                    _placeholder={{
-                                        color: 'gray.500',
-                                    }}
-                                />
-                            </FormControl>
-
-                            <FormControl isRequired>
-                                <FormLabel color='gray.900'>Message</FormLabel>
-                                <Textarea
-                                    placeholder='Your Message...'
-                                    bg={'gray.100'}
-                                    border={0}
-                                    color={'gray.500'}
-                                    _placeholder={{
-                                        color: 'gray.500',
-                                    }}
-                                />
-                            </FormControl>
-                        </Stack>
-                        <Button
-                            fontFamily={'Open Sans'}
-                            mt={8}
-                            w={'full'}
-                            bgGradient='linear(to-r, red.400,pink.400)'
-                            color={'white'}
-                            _hover={{
-                                bgGradient: 'linear(to-r, red.400,pink.400)',
-                                boxShadow: 'xl',
-                            }}
-                            type='submit'
-                        >
-                            Submit
-                        </Button>
-                    </Box>
-                    form
+                    <MessageForm />
                 </Stack>
             </Container>
             <Blur
