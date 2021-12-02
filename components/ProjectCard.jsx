@@ -175,7 +175,7 @@ const ProjectCard = ({ project }) => {
                                         <Button
                                             onClick={() =>
                                                 router.push(
-                                                    '/project/project-slug'
+                                                    '/projects/project-slug'
                                                 )
                                             }
                                             rightIcon={<BiDetail />}
