@@ -23,6 +23,7 @@ export default function Work() {
                     base: 'column',
                     md: 'row',
                 }}
+                fontFamily='Roboto'
             >
                 <Flex>
                     <Flex

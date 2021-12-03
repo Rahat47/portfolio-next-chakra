@@ -10,9 +10,13 @@ const AboutPage = () => {
             <Head>
                 <title>About &mdash; Rahat</title>
             </Head>
+
             <About />
+
             <Work />
+
             <SkillsSection />
+
             <WorkStats />
             <CTA />
         </>

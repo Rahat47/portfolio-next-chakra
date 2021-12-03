@@ -16,7 +16,13 @@ const Layout = ({ children }) => {
                 <header>
                     <Navbar />
                 </header>
-                <main>{children}</main>
+                <main
+                    style={{
+                        position: 'relative',
+                    }}
+                >
+                    {children}
+                </main>
                 <footer>
                     <Footer />
                 </footer>

@@ -46,6 +46,7 @@ export default function Navbar() {
     const MobileNavContent = (
         <Fade in={mobileNav.isOpen}>
             <VStack
+                zIndex={1000}
                 pos='absolute'
                 top={0}
                 left={0}
@@ -71,6 +72,7 @@ export default function Navbar() {
                         variant='ghost'
                         leftIcon={item.Icon}
                         key={item.id}
+                        onClick={mobileNav.onClose}
                     >
                         <Link
                             fontFamily="'Open Sans', sans-serif"

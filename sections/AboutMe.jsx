@@ -17,15 +17,15 @@ import { SectionHeading, Skill } from '../components';
 
 export default function About() {
     return (
-        <Container maxW={'7xl'} py={12} as='section'>
+        <Container maxW={'7xl'} py={12} as='section' fontFamily='Roboto'>
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <Stack spacing={4}>
                     <SectionHeading title='About Me' />
                     <Heading>Rayhan Hossain Rahat</Heading>
                     <Text
-                        fontFamily='Open sans'
+                        fontFamily='Roboto'
                         color={'gray.500'}
-                        fontSize={'lg'}
+                        fontSize={'md'}
                         lineHeight={'150%'}
                     >
                         Hello! My name is Rahat and I enjoy creating things that
@@ -63,7 +63,7 @@ export default function About() {
                             />
                         }
                     >
-                        <Text fontSize='sm' fontFamily='Open sans'>
+                        <Text fontSize='sm' fontFamily='Roboto'>
                             Here are a few technologies I’ve been working with
                             recently:
                         </Text>

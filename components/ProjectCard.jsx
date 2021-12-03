@@ -136,7 +136,15 @@ const ProjectCard = ({ project }) => {
                         >
                             <Stack wrap='wrap' direction='row'>
                                 {useBreakpointValue({
-                                    base: <IconButton icon={<FaGithub />} />,
+                                    base: (
+                                        <IconButton
+                                            as='a'
+                                            href='https://github.com/Rahat47'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                            icon={<FaGithub />}
+                                        />
+                                    ),
                                     md: (
                                         <Button
                                             as='a'
@@ -153,6 +161,10 @@ const ProjectCard = ({ project }) => {
                                 {useBreakpointValue({
                                     base: (
                                         <IconButton
+                                            as='a'
+                                            href='https://github.com/Rahat47'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
                                             icon={<FaExternalLinkAlt />}
                                         />
                                     ),
@@ -170,7 +182,16 @@ const ProjectCard = ({ project }) => {
                                 })}
 
                                 {useBreakpointValue({
-                                    base: <IconButton icon={<BiDetail />} />,
+                                    base: (
+                                        <IconButton
+                                            onClick={() =>
+                                                router.push(
+                                                    '/projects/project-slug'
+                                                )
+                                            }
+                                            icon={<BiDetail />}
+                                        />
+                                    ),
                                     md: (
                                         <Button
                                             onClick={() =>

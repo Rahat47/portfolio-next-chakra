@@ -9,6 +9,7 @@ import {
     useColorModeValue,
     createIcon,
     Link as ChLink,
+    Slide,
 } from '@chakra-ui/react';
 
 import Link from 'next/link';
