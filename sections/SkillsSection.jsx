@@ -1,6 +1,4 @@
-import React from 'react';
 import {
-    Box,
     chakra,
     Flex,
     Heading,
@@ -14,7 +12,6 @@ import { MdOutlineDesignServices } from 'react-icons/md';
 import { VscServerProcess } from 'react-icons/vsc';
 import { backendSkills, frontendSkills } from '../assets/data/skills';
 import { Tech } from '../components';
-import { AiFillExclamationCircle } from 'react-icons/ai';
 
 export default function SkillsSection() {
     return (

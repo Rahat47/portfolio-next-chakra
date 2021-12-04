@@ -1,5 +1,4 @@
 import {
-    chakra,
     Box,
     useColorModeValue,
     Icon,
@@ -7,11 +6,8 @@ import {
     Container,
     Heading,
     Text,
-    Button,
-    Stack,
 } from '@chakra-ui/react';
 
-import { RiExternalLinkLine } from 'react-icons/ri';
 import { ContactSocialHandle } from '../components';
 
 const ContactHero = () => {

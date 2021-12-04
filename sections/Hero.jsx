@@ -70,7 +70,7 @@ export default function Hero() {
                                 bg: 'green.500',
                             }}
                         >
-                            <Link href='/projects'>
+                            <Link href='/projects' scroll={false}>
                                 <a>Explore More</a>
                             </Link>
                         </Button>
@@ -79,7 +79,7 @@ export default function Hero() {
                             colorScheme={'blue'}
                             size={'sm'}
                         >
-                            <Link href='/about'>
+                            <Link href='/about' scroll={false}>
                                 <a>Learn more about me</a>
                             </Link>
                         </Button>

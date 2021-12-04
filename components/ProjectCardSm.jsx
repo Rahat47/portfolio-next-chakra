@@ -71,7 +71,7 @@ export default function ProjectCardSm() {
                             </Tag>
                         </Text>
                     </Flex>
-                    <Link href='/projects/project-slug' passHref>
+                    <Link scroll={false} href='/projects/project-slug' passHref>
                         <ChakraLink
                             color={useColorModeValue('gray.700', 'white')}
                             fontSize={'2xl'}

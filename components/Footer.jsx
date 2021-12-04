@@ -54,7 +54,7 @@ export default function Footer() {
                 justify={{ base: 'center', md: 'space-between' }}
                 align={{ base: 'center', md: 'center' }}
             >
-                <Link href='/'>
+                <Link scroll={false} href='/'>
                     <a>
                         <SiRakuten size='2rem' />
                     </a>

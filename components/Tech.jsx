@@ -1,5 +1,4 @@
 import {
-    Flex,
     Icon,
     Box,
     chakra,

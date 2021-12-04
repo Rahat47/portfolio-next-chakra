@@ -20,7 +20,10 @@ const Layout = ({ children }) => {
                 <header>
                     <Navbar />
                 </header>
-                <AnimatePresence exitBeforeEnter>
+                <AnimatePresence
+                    onExitComplete={() => window.scrollTo(0, 0)}
+                    exitBeforeEnter
+                >
                     <motion.main
                         initial='hidden'
                         animate='enter'

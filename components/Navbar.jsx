@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+
 import {
     Box,
-    chakra,
     HStack,
     Flex,
     IconButton,
@@ -14,12 +15,13 @@ import {
     Fade,
 } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
+
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
-import { navLinks } from '../assets/data/navlinks';
 import { FcDocument } from 'react-icons/fc';
-import Link from 'next/link';
 import { SiRakuten } from 'react-icons/si';
+
+import { navLinks } from '../assets/data/navlinks';
 
 export default function Navbar() {
     const { toggleColorMode: toggleMode } = useColorMode();
@@ -76,6 +78,7 @@ export default function Navbar() {
                         onClick={mobileNav.onClose}
                     >
                         <Link
+                            scroll={false}
                             fontFamily="'Open Sans', sans-serif"
                             href={item.url}
                         >
@@ -107,7 +110,7 @@ export default function Navbar() {
             borderBottomWidth={2}
             borderBottomColor={useColorModeValue('gray.200', 'gray.900')}
         >
-            <chakra.div h='4.5rem' mx='auto'>
+            <Box h='4.5rem' mx='auto'>
                 <Flex
                     w='full'
                     h='full'
@@ -116,13 +119,9 @@ export default function Navbar() {
                     justifyContent='space-between'
                 >
                     <Flex align='flex-start'>
-                        <Link href='/' passHref>
-                            <HStack>
-                                <Link href='/'>
-                                    <a>
-                                        <SiRakuten size='2rem' />
-                                    </a>
-                                </Link>
+                        <Link href='/' passHref scroll={false}>
+                            <HStack cursor='pointer'>
+                                <SiRakuten size='2rem' />
                             </HStack>
                         </Link>
                     </Flex>
@@ -142,7 +141,9 @@ export default function Navbar() {
                                     _hover={{ color: cl }}
                                     _focus={{ boxShadow: 'none' }}
                                 >
-                                    <Link href={item.url}>{item.name}</Link>
+                                    <Link scroll={false} href={item.url}>
+                                        {item.name}
+                                    </Link>
                                 </Button>
                             ))}
                             <Button
@@ -181,7 +182,7 @@ export default function Navbar() {
                     </Flex>
                 </Flex>
                 {MobileNavContent}
-            </chakra.div>
+            </Box>
         </Box>
     );
 }

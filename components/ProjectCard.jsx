@@ -99,7 +99,11 @@ const ProjectCard = ({ project }) => {
                                 {new Date().toLocaleDateString()}
                             </Tag>
                         </Flex>
-                        <Link href='/projects/project-slug' passHref>
+                        <Link
+                            href='/projects/project-slug'
+                            passHref
+                            scroll={false}
+                        >
                             <ChakraLink
                                 display='block'
                                 color={useColorModeValue('gray.800', 'white')}
