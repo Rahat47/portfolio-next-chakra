@@ -4,7 +4,8 @@ import Work from '../sections/Work';
 import WorkStats from '../sections/WorkStats';
 import Head from 'next/head';
 import SkillsSection from '../sections/SkillsSection';
-const AboutPage = () => {
+import { getRequest } from '../services/services';
+const AboutPage = ({ works }) => {
     return (
         <>
             <Head>
@@ -13,7 +14,7 @@ const AboutPage = () => {
 
             <About />
 
-            <Work />
+            <Work works={works} />
 
             <SkillsSection />
 
@@ -24,3 +25,17 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+export async function getStaticProps() {
+    const data = await getRequest('work-experiences', {
+        query: {
+            populate: 'skills',
+        },
+    });
+
+    return {
+        props: {
+            works: data.data,
+        },
+    };
+}

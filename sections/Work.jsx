@@ -12,11 +12,20 @@ import {
     SimpleGrid,
 } from '@chakra-ui/react';
 import { FcBriefcase } from 'react-icons/fc';
-import { workDetails } from '../assets/data/workDetails';
 import { SectionHeading } from '../components';
+import moment from 'moment';
 
-export default function Work() {
+export default function Work({ works }) {
+    console.log(works);
+
     const WorkDetails = props => {
+        const start = moment(props.startDate).format('MMM YYYY');
+        const end = props.endDate
+            ? moment(props.endDate).format('MMM YYYY')
+            : 'Present';
+
+        const date = `${start} - ${end}`;
+
         return (
             <Flex
                 flexDirection={{
@@ -63,7 +72,9 @@ export default function Work() {
                             </Link>
                         </chakra.dt>
 
-                        <Tag colorScheme='green'>{props.type}</Tag>
+                        <Tag colorScheme='green' textTransform='capitalize'>
+                            {props.type}
+                        </Tag>
                     </Flex>
                     <Text
                         fontSize='sm'
@@ -71,7 +82,7 @@ export default function Work() {
                         color={useColorModeValue('gray.500')}
                         lineHeight='150%'
                     >
-                        {props.date}
+                        {date}
                     </Text>
                     <chakra.dd
                         mt={2}
@@ -137,17 +148,18 @@ export default function Work() {
                                 gridColumnGap={{ md: 8 }}
                                 gridRowGap={{ md: 10 }}
                             >
-                                {workDetails.map(work => (
+                                {works.map(work => (
                                     <WorkDetails
-                                        title={work.title}
-                                        link={work.link}
+                                        title={work.attributes.title}
+                                        link={work.attributes.url}
                                         icon={<FcBriefcase size='1.5rem' />}
                                         key={work.id}
-                                        date={work.date}
-                                        type={work.type}
-                                        skills={work.skills}
+                                        startDate={work.attributes.start_date}
+                                        endDate={work.attributes.end_date}
+                                        type={work.attributes.type}
+                                        // skills={work.skills}
                                     >
-                                        {work.content}
+                                        {work.attributes.description}
                                     </WorkDetails>
                                 ))}
                             </SimpleGrid>
