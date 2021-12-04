@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 import {
     Box,
     useColorModeValue,
@@ -8,16 +8,15 @@ import {
     Text,
     Heading,
 } from '@chakra-ui/react';
-import { FaGithub } from 'react-icons/fa';
-import { BsChatQuote } from 'react-icons/bs';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { Link as ScrollLink } from 'react-scroll';
+import { BsStars } from 'react-icons/bs';
+import { MdReadMore } from 'react-icons/md';
+
 import projectImg from '../assets/images/RahatGithub.png';
 
 const CHImage = chakra(Image);
 
 const ProjectsHero = () => {
-    const router = useRouter();
     return (
         <Box px={8} py={24} mx='auto' as='section'>
             <Box
@@ -64,11 +63,10 @@ const ProjectsHero = () => {
                     justifyContent={{ sm: 'left', md: 'center' }}
                 >
                     <Button
-                        as='a'
-                        href='https://github.com/Rahat47?tab=repositories'
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        as={ScrollLink}
+                        to='featured-works'
                         variant='solid'
+                        smooth
                         colorScheme={useColorModeValue('gray', 'blue')}
                         display='inline-flex'
                         alignItems='center'
@@ -77,12 +75,14 @@ const ProjectsHero = () => {
                         mb={{ base: 2, sm: 0 }}
                         size='lg'
                         cursor='pointer'
-                        rightIcon={<FaGithub />}
+                        rightIcon={<BsStars />}
                     >
-                        Visit My GitHub
+                        Featured Works
                     </Button>
                     <Button
-                        onClick={() => router.push('/contact')}
+                        as={ScrollLink}
+                        to='more-works'
+                        smooth
                         colorScheme='gray'
                         display='inline-flex'
                         alignItems='center'
@@ -91,9 +91,9 @@ const ProjectsHero = () => {
                         mb={{ base: 2, sm: 0 }}
                         size='lg'
                         cursor='pointer'
-                        rightIcon={<BsChatQuote />}
+                        rightIcon={<MdReadMore />}
                     >
-                        Get a Quote
+                        More Works
                     </Button>
                 </Stack>
             </Box>

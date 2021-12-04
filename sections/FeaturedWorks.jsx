@@ -10,6 +10,7 @@ const FeaturedWorks = () => {
             bg={useColorModeValue('gray.200', 'gray.700')}
             as='section'
             rounded='sm'
+            id='featured-works'
         >
             <HeadingBB text='Featured' coloredText='Projects' />
 

@@ -2,7 +2,7 @@ import { Container, SimpleGrid, Center, Button } from '@chakra-ui/react';
 import { HeadingBB, ProjectCardSm } from '../components';
 const MoreProjects = () => {
     return (
-        <Container maxW='7xl' as='section' py={10}>
+        <Container maxW='7xl' as='section' py={10} id='more-works'>
             <HeadingBB text='More' coloredText='Projects' />
 
             <SimpleGrid columns={[1, 1, 2, 3]} spacing={5}>
