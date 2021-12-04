@@ -101,7 +101,7 @@ export default function Navbar() {
             transition='box-shadow 0.2s'
             bg={bg}
             borderTop='6px solid'
-            // borderTopColor='brand.400'
+            borderTopColor='brand.400'
             w='full'
             overflowY='hidden'
             borderBottomWidth={2}

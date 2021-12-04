@@ -1,4 +1,4 @@
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import {
     Box,
     Center,
@@ -17,6 +17,8 @@ import { BiLinkExternal } from 'react-icons/bi';
 import { FaGithub } from 'react-icons/fa';
 
 export default function ProjectCardSm() {
+    const router = useRouter();
+
     return (
         <Center py={6}>
             <Box

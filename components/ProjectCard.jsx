@@ -17,9 +17,11 @@ import Link from 'next/link';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { BiDetail } from 'react-icons/bi';
 import { backgrounds } from '../assets/data/backgroundsGradient';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 const ProjectCard = ({ project }) => {
+    const router = useRouter();
+
     const randomNumber = () => {
         // return a random number from 1-4
         return Math.floor(Math.random() * 4);

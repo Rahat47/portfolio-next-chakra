@@ -1,5 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
 import Router, { useRouter } from 'next/router';
 import { Layout } from '../components';
@@ -55,9 +54,7 @@ function MyApp({ Component, pageProps }) {
             />
             <ChakraProvider>
                 <Layout>
-                    <AnimatePresence exitBeforeEnter initial={false} key={router.route}>
-                        <Component {...pageProps} key={router.route} />
-                    </AnimatePresence>
+                    <Component {...pageProps} key={router.route} />
                 </Layout>
             </ChakraProvider>
         </>
