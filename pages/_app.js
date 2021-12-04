@@ -1,11 +1,14 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import { AnimatePresence } from 'framer-motion';
 import Head from 'next/head';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { Layout } from '../components';
 import nProgress from 'nprogress';
 import '../styles/globals.css'
+import { DefaultSeo } from 'next-seo';
 
 function MyApp({ Component, pageProps }) {
+    const router = useRouter();
     nProgress.configure({ showSpinner: false });
 
     const handleRouteChangeStart = () => {
@@ -20,6 +23,7 @@ function MyApp({ Component, pageProps }) {
     Router.events.on('routeChangeComplete', handleRouteChangeComplete);
     Router.events.on('routeChangeError', handleRouteChangeComplete);
 
+
     return (
         <>
             <Head>
@@ -31,9 +35,29 @@ function MyApp({ Component, pageProps }) {
                     referrerPolicy='no-referrer'
                 />
             </Head>
+            <DefaultSeo
+                title='Rayhan Rahat'
+                description='Rayhan Rahat is a web engineer based in Dhaka, Bangladesh. He is a full stack developer and a tech enthusiast.'
+                openGraph={{
+                    type: 'website',
+                    locale: 'en_US',
+                    url: 'https://rayhan-rahat.vercel.app/',
+                    site_name: 'Rayhan Rahat',
+                    images: [
+                        {
+                            url: 'https://rayhan-rahat.vercel.app/images/og-image.png',
+                            width: 1200,
+                            height: 630,
+                            alt: 'Rayhan Rahat',
+                        },
+                    ],
+                }}
+            />
             <ChakraProvider>
                 <Layout>
-                    <Component {...pageProps} />
+                    <AnimatePresence exitBeforeEnter initial={false} key={router.route}>
+                        <Component {...pageProps} key={router.route} />
+                    </AnimatePresence>
                 </Layout>
             </ChakraProvider>
         </>

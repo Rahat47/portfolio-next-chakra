@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+    Box,
     chakra,
     HStack,
     Flex,
@@ -94,13 +95,13 @@ export default function Navbar() {
         </Fade>
     );
     return (
-        <chakra.header
+        <Box
             ref={ref}
             shadow={y > height ? 'sm' : undefined}
             transition='box-shadow 0.2s'
             bg={bg}
             borderTop='6px solid'
-            borderTopColor='brand.400'
+            // borderTopColor='brand.400'
             w='full'
             overflowY='hidden'
             borderBottomWidth={2}
@@ -181,6 +182,6 @@ export default function Navbar() {
                 </Flex>
                 {MobileNavContent}
             </chakra.div>
-        </chakra.header>
+        </Box>
     );
 }
