@@ -62,12 +62,17 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const project = await getSingleProject(params.slug);
 
-    if (!project || !project.title) {
+    // if (!project || !project.title) {
+    //     return {
+    //         redirect: {
+    //             destination: '/projects',
+    //             permanent: false,
+    //         },
+    //     };
+    // }
+    if (!project) {
         return {
-            redirect: {
-                destination: '/projects',
-                permanent: false,
-            },
+            notFound: true,
         };
     }
 
