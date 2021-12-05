@@ -88,7 +88,12 @@ export default function ProjectCardSm({ project }) {
                             {project.title}
                         </ChakraLink>
                     </Link>
-                    <Text color={'gray.500'}>{project.simpleDescription}</Text>
+                    <Text color={'gray.500'}>
+                        {project.simpleDescription.length > 100
+                            ? project.simpleDescription.substring(0, 100) +
+                              '...'
+                            : project.simpleDescription}
+                    </Text>
 
                     <Stack isInline justify='center'>
                         {project.links.source && (

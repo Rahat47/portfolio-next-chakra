@@ -1,23 +1,64 @@
-import { Center, Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import ProjectDetailDesc from "../../sections/ProjectDetailsDesc";
-import ProjectDetailsHero from "../../sections/ProjectDetailsHero";
-import ProjectDetailsImg from "../../sections/ProjectDetailsImg";
+import { Center, Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import ProjectDetailDesc from '../../sections/ProjectDetailsDesc';
+import ProjectDetailsHero from '../../sections/ProjectDetailsHero';
+import ProjectDetailsImg from '../../sections/ProjectDetailsImg';
+import { getAllProjectsSlugs, getSingleProject } from '../../services/services';
 
-const ProjectDetailPage = () => {
+const ProjectDetailPage = ({ project }) => {
     const router = useRouter();
 
     return (
         <>
-            <ProjectDetailsHero />
-            <ProjectDetailDesc />
-            <ProjectDetailsImg />
+            <ProjectDetailsHero
+                bg={project.cover.url}
+                title={project.title}
+                links={project.links}
+            />
+            <ProjectDetailDesc
+                started={project.started}
+                types={project.type}
+                duration={project.duration}
+                language={project.language}
+                category={project.category.title}
+                skills={project.skills}
+                description={project.description}
+                client={project.client}
+            />
+            <ProjectDetailsImg images={project.images} />
 
             <Center py={10}>
-                <Button size="lg" variant="link" onClick={() => router.push('/projects')} >See more projects</Button>
+                <Button
+                    size='lg'
+                    variant='link'
+                    onClick={() => router.push('/projects')}
+                >
+                    See more projects
+                </Button>
             </Center>
         </>
     );
 };
 
 export default ProjectDetailPage;
+
+export async function getStaticPaths() {
+    const slugs = await getAllProjectsSlugs();
+
+    return {
+        paths: slugs.map(item => ({
+            params: { slug: item.slug },
+        })),
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ params }) {
+    const project = await getSingleProject(params.slug);
+
+    return {
+        props: {
+            project,
+        },
+    };
+}

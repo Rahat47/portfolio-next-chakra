@@ -91,3 +91,75 @@ export const getMoreProjects = async () => {
 
     return result.projects
 }
+
+export const getSingleProject = async (slug) => {
+    const query = gql`
+    query GetSingleProject($slug: String!) {
+        project(where: {slug: $slug}) {
+          id
+          category {
+            title
+            slug
+          }
+          client {
+            avatar {
+              url
+            }
+            bio
+            email
+            location
+            name
+            urlHandle
+            project {
+                id
+            }
+          }
+          cover {
+            url
+            width
+            height
+          }
+          duration
+          images {
+            fileName
+            height
+            id
+            url
+            width
+          }
+          isFeatured
+          language
+          links
+          note
+          simpleDescription
+          skills
+          slug
+          started
+          title
+          type
+          description {
+                raw
+                html
+            }
+        }
+      }
+      `
+
+    const result = await request(graphQLEndpoint, query, { slug })
+
+    return result.project
+}
+
+export const getAllProjectsSlugs = async () => {
+    const query = gql`
+    query GetAllProjectsSlugs {
+        projects {
+            slug
+        }
+      }
+      `
+
+    const result = await request(graphQLEndpoint, query)
+
+    return result.projects
+}

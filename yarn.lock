@@ -776,6 +776,21 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@graphcms/rich-text-react-renderer@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@graphcms/rich-text-react-renderer/-/rich-text-react-renderer-0.3.2.tgz#b76a1badf61f37b6d1aa72b92831e0210582c361"
+  integrity sha512-3oXiGXU9r33olCP2rHo3ynV/0dgmwmb29hqvnV4YnwBGDp87Q7+Gy3PI3MNWwwEiYzSc5euOpCsRYVCgdee0eA==
+  dependencies:
+    "@graphcms/rich-text-types" "^0.2.1"
+    escape-html "^1.0.3"
+
+"@graphcms/rich-text-types@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@graphcms/rich-text-types/-/rich-text-types-0.2.1.tgz#dae191d7ed27e16e36d6e86a6d51371ca5cdafef"
+  integrity sha512-OgzaqsXAUBduNGnMsnLl5Vt7aN3sNgmwK7iGecp6NFhuro4babPEuUyLICKNBHEiYkguKCiGl0nzuLjZon4bNg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.npmjs.org/@hapi/accept/-/accept-5.0.2.tgz"
@@ -1838,6 +1853,11 @@ escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
+
+escape-html@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+  integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -3926,7 +3946,7 @@ tslib@^1.0.0, tslib@^1.8.1, tslib@^1.9.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3, tslib@^2.1.0:
+tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0:
   version "2.3.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==

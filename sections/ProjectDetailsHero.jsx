@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
     useBreakpointValue,
     useColorModeValue,
@@ -11,14 +12,14 @@ import {
 import { FaGithub } from 'react-icons/fa';
 import { GoLinkExternal } from 'react-icons/go';
 
-const ProjectDetailsHero = () => {
+const ProjectDetailsHero = ({ bg, title, links }) => {
     return (
         <Container as='section' maxW='8xl'>
             <Box
                 w='full'
                 position='relative'
                 h='container.sm'
-                backgroundImage='url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)'
+                backgroundImage={`url(${bg})`}
                 bgPos='center'
                 bgSize='cover'
                 //clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9vh), 0 100%);
@@ -33,7 +34,7 @@ const ProjectDetailsHero = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    opacity: 0.5,
+                    opacity: 0.4,
                     zIndex: -1,
                     bgGradient: 'linear(to-br, gray.700, blue.200)',
                 }}
@@ -53,7 +54,7 @@ const ProjectDetailsHero = () => {
                             bgClip='text'
                             bgGradient='linear(to-r, orange.200, cyan.600)'
                         >
-                            Super Cool Project Name
+                            {title}
                         </Heading>
                         <Stack
                             direction={{
@@ -61,26 +62,47 @@ const ProjectDetailsHero = () => {
                                 md: 'row',
                             }}
                         >
-                            <Button
-                                colorScheme='gray'
-                                textTransform='uppercase'
-                                w='fit-content'
-                                fontSize='sm'
-                                rightIcon={<FaGithub />}
-                                variant={useColorModeValue('solid', 'ghost')}
-                            >
-                                View Source
-                            </Button>
-                            <Button
-                                colorScheme={useColorModeValue('cyan', 'green')}
-                                textTransform='uppercase'
-                                w='fit-content'
-                                fontSize='sm'
-                                rightIcon={<GoLinkExternal />}
-                                variant={useColorModeValue('solid', 'ghost')}
-                            >
-                                View Demo
-                            </Button>
+                            {links.source && (
+                                <Button
+                                    as='a'
+                                    href={links.source}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    colorScheme='gray'
+                                    textTransform='uppercase'
+                                    w='fit-content'
+                                    fontSize='sm'
+                                    rightIcon={<FaGithub />}
+                                    variant={useColorModeValue(
+                                        'solid',
+                                        'ghost'
+                                    )}
+                                >
+                                    View Source
+                                </Button>
+                            )}
+                            {links.live && (
+                                <Button
+                                    as='a'
+                                    href={links.live}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    colorScheme={useColorModeValue(
+                                        'cyan',
+                                        'green'
+                                    )}
+                                    textTransform='uppercase'
+                                    w='fit-content'
+                                    fontSize='sm'
+                                    rightIcon={<GoLinkExternal />}
+                                    variant={useColorModeValue(
+                                        'solid',
+                                        'ghost'
+                                    )}
+                                >
+                                    View Demo
+                                </Button>
+                            )}
                         </Stack>
                     </Stack>
                 </Flex>
