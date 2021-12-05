@@ -6,13 +6,13 @@ import { VscGithubAlt } from "react-icons/vsc";
 export const avatars = [
     {
         name: 'Facebook',
-        url: 'https://www.facebook.com/',
+        url: 'https://www.facebook.com/rayhanhossain.rahat.5/',
         icon: <MdOutlineFacebook />,
         color: '#1877F2',
     },
     {
         name: 'Twitter',
-        url: 'https://twitter.com/',
+        url: 'https://twitter.com/rh_rahat_dev',
         icon: <BsTwitter />,
         color: '#1DA1F2',
     },
@@ -24,7 +24,7 @@ export const avatars = [
     },
     {
         name: 'Instagram',
-        url: 'https://www.instagram.com/',
+        url: 'https://www.instagram.com/rh.rahat0047/',
         icon: <BsInstagram />,
         color: '#E4405F',
     },
