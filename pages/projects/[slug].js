@@ -45,6 +45,7 @@ export default ProjectDetailPage;
 export async function getStaticPaths() {
     const slugs = await getAllProjectsSlugs();
 
+    // supports incremental build
     return {
         paths: slugs.map(item => ({
             params: { slug: item.slug },
@@ -60,5 +61,7 @@ export async function getStaticProps({ params }) {
         props: {
             project,
         },
+        // Revalidate the page every 20 minutes
+        revalidate: 20 * 60,
     };
 }
