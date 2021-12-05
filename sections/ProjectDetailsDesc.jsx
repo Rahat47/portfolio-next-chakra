@@ -56,7 +56,7 @@ const ProjectDetailDesc = ({
                                 <Tag
                                     key={skill}
                                     variant='solid'
-                                    colorScheme='orange'
+                                    colorScheme='blue'
                                 >
                                     {skill}
                                 </Tag>
