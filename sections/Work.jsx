@@ -16,8 +16,6 @@ import { SectionHeading } from '../components';
 import moment from 'moment';
 
 export default function Work({ works }) {
-    console.log(works);
-
     const WorkDetails = props => {
         const start = moment(props.startDate).format('MMM YYYY');
         const end = props.endDate
@@ -73,7 +71,7 @@ export default function Work({ works }) {
                         </chakra.dt>
 
                         <Tag colorScheme='green' textTransform='capitalize'>
-                            {props.type}
+                            {props.types.join(' / ')}
                         </Tag>
                     </Flex>
                     <Text
@@ -150,16 +148,16 @@ export default function Work({ works }) {
                             >
                                 {works.map(work => (
                                     <WorkDetails
-                                        title={work.attributes.title}
-                                        link={work.attributes.url}
+                                        title={work.title}
+                                        link={work.url}
                                         icon={<FcBriefcase size='1.5rem' />}
                                         key={work.id}
-                                        startDate={work.attributes.start_date}
-                                        endDate={work.attributes.end_date}
-                                        type={work.attributes.type}
-                                        // skills={work.skills}
+                                        startDate={work.joinedDate}
+                                        endDate={work.leftDate}
+                                        types={work.type}
+                                        skills={work.skills}
                                     >
-                                        {work.attributes.description}
+                                        {work.description}
                                     </WorkDetails>
                                 ))}
                             </SimpleGrid>

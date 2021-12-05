@@ -1,19 +1,29 @@
-import axios from 'axios';
+import { request, gql } from 'graphql-request'
 
-export const baseURL = 'http://localhost:1337/api/';
+const graphQLEndpoint = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
-export const getRequest = async (url, params) => {
-    console.log(process.env.API_KEY)
+export const getWorks = async () => {
+    const query = gql`
+        query GetWorks {
+            workExperiences {
+                createdAt
+                description
+                id
+                joinedDate
+                leftDate
+                skills
+                slug
+                title
+                type
+                url
+                richDescription {
+                    html
+                }
+            }
+        }
+    `
 
-    try {
-        const { data } = await axios.get(`${baseURL}${url}`, {
-            headers: {
-                Authorization: `Bearer ${process.env.API_KEY}`
-            },
-            params
-        });
-        return data;
-    } catch (error) {
-        console.log(error);
-    }
+    const result = await request(graphQLEndpoint, query)
+
+    return result.workExperiences
 }
