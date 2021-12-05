@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
                     site_name: 'Rayhan Rahat',
                     images: [
                         {
-                            url: 'https://rayhan-rahat.vercel.app/images/og-image.png',
+                            url: 'https://rayhan-rahat.vercel.app/images/site-image.jpg',
                             width: 1200,
                             height: 630,
                             alt: 'Rayhan Rahat',
