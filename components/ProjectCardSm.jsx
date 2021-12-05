@@ -4,7 +4,6 @@ import {
     Center,
     IconButton,
     Text,
-    Image,
     Stack,
     useColorModeValue,
     Tag,
@@ -12,11 +11,13 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { AiOutlineRightSquare } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import { FaGithub } from 'react-icons/fa';
+import moment from 'moment';
 
-export default function ProjectCardSm() {
+export default function ProjectCardSm({ project }) {
     const router = useRouter();
 
     return (
@@ -39,13 +40,16 @@ export default function ProjectCardSm() {
                     pos={'relative'}
                     overflow='hidden'
                 >
-                    <Image
-                        src={
-                            'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-                        }
-                        layout={'fill'}
-                        alt='some image'
-                    />
+                    <Box>
+                        <Image
+                            src={project.cover.url}
+                            alt={project.title}
+                            width={project.cover.width}
+                            height={project.cover.height}
+                            placeholder='blur'
+                            blurDataURL={project.cover.url}
+                        />
+                    </Box>
                 </Box>
                 <Stack spacing='4'>
                     <Flex justify='space-between'>
@@ -56,7 +60,7 @@ export default function ProjectCardSm() {
                                 fontSize={'sm'}
                                 colorScheme='green'
                             >
-                                Frontend
+                                {project.category.title}
                             </Tag>
                         </Text>
 
@@ -67,44 +71,47 @@ export default function ProjectCardSm() {
                                 fontSize={'sm'}
                                 colorScheme='blue'
                             >
-                                {new Date().toLocaleDateString()}
+                                {moment(project.started).format('MMM YYYY')}
                             </Tag>
                         </Text>
                     </Flex>
-                    <Link scroll={false} href='/projects/project-slug' passHref>
+                    <Link
+                        scroll={false}
+                        href={`/projects/${project.slug}`}
+                        passHref
+                    >
                         <ChakraLink
                             color={useColorModeValue('gray.700', 'white')}
                             fontSize={'2xl'}
                             fontFamily={'Roboto'}
                         >
-                            Boost your conversion rate
+                            {project.title}
                         </ChakraLink>
                     </Link>
-                    <Text color={'gray.500'}>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        dolore magna aliquyam erat, sed diam voluptua. At vero
-                        eos et accusam et justo duo dolores et ea rebum.
-                    </Text>
+                    <Text color={'gray.500'}>{project.simpleDescription}</Text>
 
                     <Stack isInline justify='center'>
-                        <IconButton
-                            as='a'
-                            href='https://github.com/Rahat47'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            icon={<FaGithub />}
-                        />
-                        <IconButton
-                            as='a'
-                            href='https://github.com/Rahat47'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            icon={<BiLinkExternal />}
-                        />
+                        {project.links.source && (
+                            <IconButton
+                                as='a'
+                                href={project.links.source}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                icon={<FaGithub />}
+                            />
+                        )}
+                        {project.links.live && (
+                            <IconButton
+                                as='a'
+                                href={project.links.live}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                icon={<BiLinkExternal />}
+                            />
+                        )}
                         <IconButton
                             onClick={() =>
-                                router.push('/projects/project-slug')
+                                router.push(`/projects/${project.slug}`)
                             }
                             icon={<AiOutlineRightSquare />}
                         />

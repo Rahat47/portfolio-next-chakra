@@ -2,7 +2,7 @@ import { Container, Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { HeadingBB, ProjectCard } from '../components';
 
-const FeaturedWorks = () => {
+const FeaturedWorks = ({ featuredProjects }) => {
     return (
         <Container
             maxW='7xl'
@@ -15,10 +15,9 @@ const FeaturedWorks = () => {
             <HeadingBB text='Featured' coloredText='Projects' />
 
             <Flex direction='column'>
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
+                {featuredProjects.map(project => (
+                    <ProjectCard key={project.slug} project={project} />
+                ))}
             </Flex>
         </Container>
     );

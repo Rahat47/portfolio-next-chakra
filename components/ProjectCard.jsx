@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import {
     Text,
     Box,
-    Image,
+    Image as ChakraImage,
     Flex,
     useColorModeValue,
     Tag,
@@ -12,12 +13,15 @@ import {
     Stack,
     useBreakpointValue,
     IconButton,
+    chakra,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import { BiDetail } from 'react-icons/bi';
 import { backgrounds } from '../assets/data/backgroundsGradient';
 import { useRouter } from 'next/router';
+import moment from 'moment';
 
 const ProjectCard = ({ project }) => {
     const router = useRouter();
@@ -64,19 +68,22 @@ const ProjectCard = ({ project }) => {
                     backgroundImage: backgrounds[randomNumber()],
                 }}
             >
-                <Box overflow='hidden'>
-                    <Image
-                        roundedTop='lg'
-                        w='full'
-                        h={64}
-                        fit='cover'
-                        src='https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-                        alt='Article'
+                <Box overflow='hidden' maxH={64} w='full' roundedTop='lg'>
+                    <Box
                         transition='all 3s ease'
                         _hover={{
                             transform: 'scale(1.3)',
                         }}
-                    />
+                    >
+                        <Image
+                            width={project.cover.width}
+                            height={project.cover.height}
+                            src={project.cover.url}
+                            alt={project.title}
+                            placeholder='blur'
+                            blurDataURL={project.cover.url}
+                        />
+                    </Box>
                 </Box>
 
                 <Box p={6}>
@@ -91,16 +98,16 @@ const ProjectCard = ({ project }) => {
                                         'brand.400'
                                     )}
                                 >
-                                    Frontend
+                                    {project.category.title}
                                 </Tag>
                             </HStack>
 
                             <Tag colorScheme='teal'>
-                                {new Date().toLocaleDateString()}
+                                {moment(project.started).format('MMM YYYY')}
                             </Tag>
                         </Flex>
                         <Link
-                            href='/projects/project-slug'
+                            href={`/projects/${project.slug}`}
                             passHref
                             scroll={false}
                         >
@@ -115,7 +122,7 @@ const ProjectCard = ({ project }) => {
                                     textDecor: 'underline',
                                 }}
                             >
-                                A super cool project
+                                {project.title}
                             </ChakraLink>
                         </Link>
                         <Text
@@ -124,11 +131,7 @@ const ProjectCard = ({ project }) => {
                             fontSize='sm'
                             color={useColorModeValue('gray.600', 'gray.400')}
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Molestie parturient et sem ipsum volutpat vel.
-                            Natoque sem et aliquam mauris egestas quam volutpat
-                            viverra. In pretium nec senectus erat. Et malesuada
-                            lobortis
+                            {project.simpleDescription}
                         </Text>
                     </Box>
 
@@ -141,58 +144,62 @@ const ProjectCard = ({ project }) => {
                             }}
                         >
                             <Stack wrap='wrap' direction='row'>
-                                {useBreakpointValue({
-                                    base: (
-                                        <IconButton
-                                            as='a'
-                                            href='https://github.com/Rahat47'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            icon={<FaGithub />}
-                                        />
-                                    ),
-                                    md: (
-                                        <Button
-                                            as='a'
-                                            href='https://github.com/Rahat47'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            rightIcon={<FaGithub />}
-                                        >
-                                            View Source
-                                        </Button>
-                                    ),
-                                })}
+                                {project.links.source &&
+                                    useBreakpointValue({
+                                        base: (
+                                            <IconButton
+                                                as='a'
+                                                href={project.links.source}
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                                icon={<FaGithub />}
+                                            />
+                                        ),
+                                        md: (
+                                            <Button
+                                                as='a'
+                                                href={project.links.source}
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                                rightIcon={<FaGithub />}
+                                            >
+                                                View Source
+                                            </Button>
+                                        ),
+                                    })}
 
-                                {useBreakpointValue({
-                                    base: (
-                                        <IconButton
-                                            as='a'
-                                            href='https://github.com/Rahat47'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            icon={<FaExternalLinkAlt />}
-                                        />
-                                    ),
-                                    md: (
-                                        <Button
-                                            as='a'
-                                            href='https://github.com/Rahat47'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            rightIcon={<FaExternalLinkAlt />}
-                                        >
-                                            Live
-                                        </Button>
-                                    ),
-                                })}
+                                {project.links.live &&
+                                    useBreakpointValue({
+                                        base: (
+                                            <IconButton
+                                                as='a'
+                                                href={project.links.live}
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                                icon={<FaExternalLinkAlt />}
+                                            />
+                                        ),
+                                        md: (
+                                            <Button
+                                                as='a'
+                                                href={project.links.live}
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                                rightIcon={
+                                                    <FaExternalLinkAlt />
+                                                }
+                                            >
+                                                Live
+                                            </Button>
+                                        ),
+                                    })}
 
                                 {useBreakpointValue({
                                     base: (
                                         <IconButton
                                             onClick={() =>
                                                 router.push(
-                                                    '/projects/project-slug'
+                                                    `/projects/${project.slug}`
                                                 )
                                             }
                                             icon={<BiDetail />}
@@ -202,7 +209,7 @@ const ProjectCard = ({ project }) => {
                                         <Button
                                             onClick={() =>
                                                 router.push(
-                                                    '/projects/project-slug'
+                                                    `/projects/${project.slug}`
                                                 )
                                             }
                                             rightIcon={<BiDetail />}

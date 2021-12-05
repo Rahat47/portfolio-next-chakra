@@ -103,7 +103,7 @@ export default function Work({ works }) {
                                 my={2}
                                 key={skill}
                                 variant='solid'
-                                colorScheme={'blue'}
+                                colorScheme={'orange'}
                                 size='sm'
                             >
                                 {skill}
