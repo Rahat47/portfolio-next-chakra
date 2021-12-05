@@ -1,5 +1,6 @@
 import { Center, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { Fallback } from '../../components';
 import ProjectDetailDesc from '../../sections/ProjectDetailsDesc';
 import ProjectDetailsHero from '../../sections/ProjectDetailsHero';
 import ProjectDetailsImg from '../../sections/ProjectDetailsImg';
@@ -7,6 +8,10 @@ import { getAllProjectsSlugs, getSingleProject } from '../../services/services';
 
 const ProjectDetailPage = ({ project }) => {
     const router = useRouter();
+
+    if (!project) {
+        return <Fallback />;
+    }
 
     return (
         <>
@@ -50,12 +55,21 @@ export async function getStaticPaths() {
         paths: slugs.map(item => ({
             params: { slug: item.slug },
         })),
-        fallback: false,
+        fallback: true,
     };
 }
 
 export async function getStaticProps({ params }) {
     const project = await getSingleProject(params.slug);
+
+    if (!project || !project.title) {
+        return {
+            redirect: {
+                destination: '/projects',
+                permanent: false,
+            },
+        };
+    }
 
     return {
         props: {
