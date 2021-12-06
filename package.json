@@ -12,6 +12,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@graphcms/rich-text-react-renderer": "^0.3.2",
+    "@sendgrid/mail": "^7.6.0",
     "framer-motion": "^4",
     "graphql": "^16.0.1",
     "graphql-request": "^3.7.0",
