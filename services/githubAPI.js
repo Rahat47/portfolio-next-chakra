@@ -2,7 +2,8 @@ import axios from 'axios';
 
 class GithubAPI {
     constructor() {
-        this.access_token = process.env.GITHUB_ACCESS_TOKEN;
+        this.access_token = process.env.NEXT_PUBLIC_GITHUB_ACCESS_TOKEN;
+
     }
 
     async getUser(username) {
@@ -10,6 +11,9 @@ class GithubAPI {
             const response = await axios.get(`https://api.github.com/users/${username}`, {
                 headers: {
                     Authorization: `token ${this.access_token}`
+                },
+                params: {
+                    per_page: 100
                 }
             });
             return response.data;
@@ -108,6 +112,7 @@ class GithubAPI {
             console.log(error);
         }
     }
+
 }
 
 

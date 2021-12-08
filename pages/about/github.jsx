@@ -1,10 +1,11 @@
-import { HeroComponent } from '../../components/GithubPageComps';
+import { HeroComponent, Stats } from '../../components/GithubPageComps';
 import GithubAPI from '../../services/githubAPI';
 
 const GithubPage = ({ user }) => {
     return (
         <>
             <HeroComponent user={user} />
+            <Stats name={user.name} />
         </>
     );
 };

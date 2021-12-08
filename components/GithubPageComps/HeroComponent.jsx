@@ -23,8 +23,6 @@ import { IoLocationOutline } from 'react-icons/io5';
 import moment from 'moment';
 
 const HeroComponent = ({ user }) => {
-    console.log(user);
-
     const totalRepos =
         parseInt(user.public_repos) + parseInt(user.total_private_repos);
 
