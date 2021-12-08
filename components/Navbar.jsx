@@ -14,7 +14,7 @@ import {
     useColorMode,
     Fade,
 } from '@chakra-ui/react';
-import { useViewportScroll } from 'framer-motion';
+import { useViewportScroll, motion } from 'framer-motion';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -45,6 +45,10 @@ export default function Navbar() {
         const resumeLink = '/resume.pdf';
         window.open(resumeLink, '_blank');
     };
+
+    const ResumeButton = motion(Button, {
+        forwardMotionProps: true,
+    });
 
     const MobileNavContent = (
         <Fade in={mobileNav.isOpen}>
@@ -86,14 +90,16 @@ export default function Navbar() {
                         </Link>
                     </Button>
                 ))}
-                <Button
+                <ResumeButton
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     w='full'
                     onClick={downloadResume}
                     color={text}
                     leftIcon={<FcDocument />}
                 >
                     Resume
-                </Button>
+                </ResumeButton>
             </VStack>
         </Fade>
     );
@@ -146,7 +152,9 @@ export default function Navbar() {
                                     </Link>
                                 </Button>
                             ))}
-                            <Button
+                            <ResumeButton
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
                                 display='inline-flex'
                                 alignItems='center'
                                 fontSize='md'
@@ -158,7 +166,7 @@ export default function Navbar() {
                                 )}
                             >
                                 Resume
-                            </Button>
+                            </ResumeButton>
                         </HStack>
                         <IconButton
                             size='md'

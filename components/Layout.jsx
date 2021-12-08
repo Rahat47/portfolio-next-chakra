@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Footer, Navbar } from '.';
 import { useRouter } from 'next/router';
+import ScrollProgress from './ScrollProgress';
 const Layout = ({ children }) => {
     const router = useRouter();
 
@@ -47,8 +48,9 @@ const Layout = ({ children }) => {
                         key={router.route}
                     >
                         {children}
-                    </motion.main>{' '}
+                    </motion.main>
                 </AnimatePresence>
+                <ScrollProgress />
                 <footer>
                     <Footer />
                 </footer>

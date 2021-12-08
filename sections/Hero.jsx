@@ -9,8 +9,8 @@ import {
     useColorModeValue,
     createIcon,
     Link as ChLink,
-    Slide,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
 import Link from 'next/link';
 
@@ -32,27 +32,50 @@ export default function Hero() {
                             lg: '8xl',
                         }}
                         lineHeight={'120%'}
+                        fontFamily='Caveat'
                     >
-                        Hi,There <br />
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                        >
+                            Hi,There
+                        </motion.span>{' '}
+                        <br />
                         <Text as={'span'} color={'green.400'}>
-                            I’m Rahat
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5, delay: 1 }}
+                            >
+                                I’m Rahat
+                            </motion.span>
                         </Text>
                     </Heading>
                     <Text color={'gray.500'}>
-                        I’m a Web Developer specializing in building (and
-                        occasionally designing) exceptional digital experiences.
-                        Currently, I’m focused on building fast, responsive, and
-                        secure web applications.
-                        <br />
-                        Also working as a Freelancer at{' '}
-                        <ChLink
-                            color={'blue.500'}
-                            href='https://www.fiverr.com/rh_rahat_47?up_rollout=true'
-                            target='_blank'
-                            rel='noopener noreferrer'
+                        <motion.span
+                            whileHover={{
+                                color: '#fff',
+                            }}
+                            transition={{
+                                duration: 0.5,
+                            }}
                         >
-                            Fiverr
-                        </ChLink>
+                            I’m a Web Developer specializing in building (and
+                            occasionally designing) exceptional digital
+                            experiences. Currently, I’m focused on building
+                            fast, responsive, and secure web applications.
+                            <br />
+                            Also working as a Freelancer at{' '}
+                            <ChLink
+                                color={'blue.500'}
+                                href='https://www.fiverr.com/rh_rahat_47?up_rollout=true'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                Fiverr
+                            </ChLink>
+                        </motion.span>
                     </Text>
                     <Stack
                         direction={'column'}
@@ -69,6 +92,7 @@ export default function Hero() {
                             _hover={{
                                 bg: 'green.500',
                             }}
+                            size='lg'
                         >
                             <Link href='/projects' scroll={false}>
                                 <a>Explore More</a>
@@ -103,7 +127,19 @@ export default function Hero() {
                                 top={'-15px'}
                                 transform={'rotate(10deg)'}
                             >
-                                I do Freelance Work
+                                <motion.span
+                                    initial={{ opacity: 0 }}
+                                    // flash animation
+                                    animate={{
+                                        opacity: 1,
+                                        transition: {
+                                            duration: 0.5,
+                                            delay: 1,
+                                        },
+                                    }}
+                                >
+                                    I do Freelance Work
+                                </motion.span>
                             </Text>
                         </Box>
                     </Stack>
