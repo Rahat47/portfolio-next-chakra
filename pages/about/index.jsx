@@ -1,10 +1,11 @@
-import About from '../sections/AboutMe';
-import CTA from '../sections/CTA';
-import Work from '../sections/Work';
-import WorkStats from '../sections/WorkStats';
 import Head from 'next/head';
-import SkillsSection from '../sections/SkillsSection';
-import { getWorks } from '../services/services';
+import About from '../../sections/AboutMe';
+import CTA from '../../sections/CTA';
+import SkillsSection from '../../sections/SkillsSection';
+import Work from '../../sections/Work';
+import WorkStats from '../../sections/WorkStats';
+import { getWorks } from '../../services/services';
+
 const AboutPage = ({ works }) => {
     return (
         <>
