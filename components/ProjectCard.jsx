@@ -3,7 +3,6 @@ import React from 'react';
 import {
     Text,
     Box,
-    Image as ChakraImage,
     Flex,
     useColorModeValue,
     Tag,
@@ -13,7 +12,6 @@ import {
     Stack,
     useBreakpointValue,
     IconButton,
-    chakra,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';

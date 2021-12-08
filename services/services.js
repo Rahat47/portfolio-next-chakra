@@ -3,7 +3,7 @@ import { request, gql } from 'graphql-request'
 const graphQLEndpoint = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
 export const getWorks = async () => {
-    const query = gql`
+  const query = gql`
         query GetWorks {
             workExperiences {
                 createdAt
@@ -23,16 +23,16 @@ export const getWorks = async () => {
         }
     `
 
-    const result = await request(graphQLEndpoint, query)
+  const result = await request(graphQLEndpoint, query)
 
-    return result.workExperiences
+  return result.workExperiences
 }
 
 
 export const getFeaturedProjects = async () => {
-    const query = gql`
+  const query = gql`
     query GetFeaturedProjects {
-        projects(where: {isFeatured: true}) {
+        projects(where: {isFeatured: true}, orderBy: createdAt_DESC) {
           category {
             slug
             title
@@ -55,13 +55,13 @@ export const getFeaturedProjects = async () => {
       }
       `
 
-    const result = await request(graphQLEndpoint, query)
+  const result = await request(graphQLEndpoint, query)
 
-    return result.projects
+  return result.projects
 }
 
 export const getMoreProjects = async () => {
-    const query = gql`
+  const query = gql`
     query GetMoreProjects {
         projects(where: {isFeatured: false}) {
                 category {
@@ -87,13 +87,13 @@ export const getMoreProjects = async () => {
         }
       `
 
-    const result = await request(graphQLEndpoint, query)
+  const result = await request(graphQLEndpoint, query)
 
-    return result.projects
+  return result.projects
 }
 
 export const getSingleProject = async (slug) => {
-    const query = gql`
+  const query = gql`
     query GetSingleProject($slug: String!) {
         project(where: {slug: $slug}) {
           id
@@ -145,13 +145,13 @@ export const getSingleProject = async (slug) => {
       }
       `
 
-    const result = await request(graphQLEndpoint, query, { slug })
+  const result = await request(graphQLEndpoint, query, { slug })
 
-    return result.project
+  return result.project
 }
 
 export const getAllProjectsSlugs = async () => {
-    const query = gql`
+  const query = gql`
     query GetAllProjectsSlugs {
         projects {
             slug
@@ -159,7 +159,7 @@ export const getAllProjectsSlugs = async () => {
       }
       `
 
-    const result = await request(graphQLEndpoint, query)
+  const result = await request(graphQLEndpoint, query)
 
-    return result.projects
+  return result.projects
 }

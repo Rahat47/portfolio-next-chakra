@@ -45,6 +45,7 @@ const ScrollProgress = () => {
             }}
             className='progress-icon'
             viewBox='0 0 60 60'
+            pointerEvents='none'
         >
             <motion.path
                 fill='none'
