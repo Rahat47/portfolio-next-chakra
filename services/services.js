@@ -63,7 +63,7 @@ export const getFeaturedProjects = async () => {
 export const getMoreProjects = async () => {
   const query = gql`
     query GetMoreProjects {
-        projects(where: {isFeatured: false}) {
+        projects(where: {isFeatured: false}, orderBy: createdAt_DESC) {
                 category {
                     slug
                     title
