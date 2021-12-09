@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import {
     Container,
     Box,
@@ -11,9 +11,12 @@ import {
 import { PieTopLang } from '.';
 import GithubAPI from '../../services/githubAPI';
 import { getReposPerLang } from '../../utils/getReposPerLang';
+import MostStarredBar from './MostStarredBar';
 
 const Stats = ({ name }) => {
     const [topLangs, setTopLangs] = useState([]);
+    const [topTenRepos, setTopTenRepos] = useState([]);
+    const [repos, setRepos] = useState([]);
     const randomColor = () => {
         // beautiful pastel colors
         const colors = [
@@ -31,29 +34,40 @@ const Stats = ({ name }) => {
     };
 
     const github = useMemo(() => new GithubAPI(), []);
+    const getPieData = useCallback(async () => {
+        github.getRepos('Rahat47').then(data => {
+            const langs = getReposPerLang(data);
+
+            // langs is an object which contains a key named null, which needs to be removed
+            delete langs.null;
+            const _data = [];
+            for (let key in langs) {
+                // push the object to data
+                _data.push({
+                    name: key,
+                    value: langs[key],
+                    fill: randomColor(),
+                });
+            }
+            setTopLangs(_data);
+        });
+    }, [github]);
+
+    const getRepos = useCallback(async () => {
+        github
+            .getRepos('Rahat47')
+            .then(data => {
+                setRepos(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [github]);
 
     useEffect(() => {
-        async function getPieData() {
-            github.getRepos('Rahat47').then(data => {
-                const langs = getReposPerLang(data);
-
-                // langs is an object which contains a key named null, which needs to be removed
-                delete langs.null;
-                const _data = [];
-                for (let key in langs) {
-                    // push the object to data
-                    _data.push({
-                        name: key,
-                        value: langs[key],
-                        fill: randomColor(),
-                    });
-                }
-                setTopLangs(_data);
-            });
-        }
-
         getPieData();
-    }, [github]);
+        getRepos();
+    }, [getPieData, getRepos]);
 
     return (
         <Container maxW={'7xl'} as='section'>
@@ -94,7 +108,17 @@ const Stats = ({ name }) => {
                         </Text>
                         <PieTopLang data={topLangs} />
                     </Box>
-                    <h1>Chart </h1>
+
+                    <Box
+                        rounded='lg'
+                        bg='gray.700'
+                        shadow='xl'
+                        height='md'
+                        width='full'
+                    >
+                        {/* <MostStarredBar repoData={repos} /> */}
+                    </Box>
+
                     <h1>Chart </h1>
                 </SimpleGrid>
             </Box>

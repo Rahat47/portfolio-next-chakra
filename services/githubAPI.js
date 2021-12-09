@@ -40,6 +40,9 @@ class GithubAPI {
             const response = await axios.get(`https://api.github.com/users/${username}/repos`, {
                 headers: {
                     Authorization: `token ${this.access_token}`
+                },
+                params: {
+                    per_page: 100
                 }
             });
             return response.data;
@@ -103,6 +106,19 @@ class GithubAPI {
     async getUserStats(username) {
         try {
             const response = await axios.get(`https://api.github.com/users/${username}/events/public`, {
+                headers: {
+                    Authorization: `token ${this.access_token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async mostStarredRepos(username) {
+        try {
+            const response = await axios.get(`https://api.github.com/users/${username}/starred`, {
                 headers: {
                     Authorization: `token ${this.access_token}`
                 }

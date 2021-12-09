@@ -39,7 +39,7 @@ const HeroComponent = ({ user }) => {
                         textAlign={'center'}
                     >
                         <Avatar
-                            boxSize='xs'
+                            boxSize='200px'
                             src={user.avatar_url}
                             alt={user.name}
                             mb={4}
