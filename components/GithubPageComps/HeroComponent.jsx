@@ -23,9 +23,6 @@ import { IoLocationOutline } from 'react-icons/io5';
 import moment from 'moment';
 
 const HeroComponent = ({ user }) => {
-    const totalRepos =
-        parseInt(user.public_repos) + parseInt(user.total_private_repos);
-
     return (
         <chakra.section bg='gray.800'>
             <Container maxW='7xl'>
@@ -40,7 +37,7 @@ const HeroComponent = ({ user }) => {
                     >
                         <Avatar
                             boxSize='200px'
-                            src={user.avatar_url}
+                            src={user.avatarUrl}
                             alt={user.name}
                             mb={4}
                             pos={'relative'}
@@ -61,7 +58,7 @@ const HeroComponent = ({ user }) => {
                             mb={4}
                             fontFamily='Caveat'
                         >
-                            <Link href={user.html_url} isExternal>
+                            <Link href={user.url} isExternal>
                                 @{user.login}
                             </Link>
                         </Text>
@@ -93,7 +90,7 @@ const HeroComponent = ({ user }) => {
                                 <TagLeftIcon as={FaRegCalendarAlt} />
                                 <TagLabel>
                                     Joined{' '}
-                                    {moment(user.created_at).format(
+                                    {moment(user.createdAt).format(
                                         'MMMM do, YYYY'
                                     )}
                                 </TagLabel>
@@ -102,20 +99,26 @@ const HeroComponent = ({ user }) => {
 
                         <StatGroup mt={8}>
                             <Stat>
-                                <StatNumber>{totalRepos}</StatNumber>
+                                <StatNumber>
+                                    {user.repositories.totalCount}
+                                </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Repositories
                                 </StatLabel>
                             </Stat>
                             <Stat>
-                                <StatNumber>{user.followers}</StatNumber>
+                                <StatNumber>
+                                    {user.followers.totalCount}
+                                </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Followers
                                 </StatLabel>
                             </Stat>
 
                             <Stat>
-                                <StatNumber>{user.following}</StatNumber>
+                                <StatNumber>
+                                    {user.following.totalCount}
+                                </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Following
                                 </StatLabel>

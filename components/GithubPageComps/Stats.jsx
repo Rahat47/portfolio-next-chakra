@@ -9,14 +9,14 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { PieTopLang } from '.';
-import GithubAPI from '../../services/githubAPI';
-import { getReposPerLang } from '../../utils/getReposPerLang';
 import MostStarredBar from './MostStarredBar';
+import { getUserRepos } from '../../services/githubGQL';
 
 const Stats = ({ name }) => {
     const [topLangs, setTopLangs] = useState([]);
     const [topTenRepos, setTopTenRepos] = useState([]);
     const [repos, setRepos] = useState([]);
+
     const randomColor = () => {
         // beautiful pastel colors
         const colors = [
@@ -33,41 +33,30 @@ const Stats = ({ name }) => {
         return colors[Math.floor(Math.random() * colors.length)];
     };
 
-    const github = useMemo(() => new GithubAPI(), []);
-    const getPieData = useCallback(async () => {
-        github.getRepos('Rahat47').then(data => {
-            const langs = getReposPerLang(data);
+    const getTopLangs = useCallback(async () => {
+        const repos = await getUserRepos('Rahat47');
 
-            // langs is an object which contains a key named null, which needs to be removed
-            delete langs.null;
-            const _data = [];
-            for (let key in langs) {
-                // push the object to data
-                _data.push({
-                    name: key,
-                    value: langs[key],
-                    fill: randomColor(),
-                });
-            }
-            setTopLangs(_data);
+        const topLangs = {};
+        repos.forEach(repo => {
+            topLangs[repo.primaryLanguage?.name] =
+                (topLangs[repo.primaryLanguage?.name] || 0) + 1;
         });
-    }, [github]);
 
-    const getRepos = useCallback(async () => {
-        github
-            .getRepos('Rahat47')
-            .then(data => {
-                setRepos(data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, [github]);
+        delete topLangs.null;
+        delete topLangs.undefined;
+
+        const topLangsArr = Object.keys(topLangs).map(key => ({
+            name: key,
+            value: topLangs[key],
+            fill: randomColor(),
+        }));
+
+        setTopLangs(topLangsArr);
+    }, []);
 
     useEffect(() => {
-        getPieData();
-        getRepos();
-    }, [getPieData, getRepos]);
+        getTopLangs();
+    }, [getTopLangs]);
 
     return (
         <Container maxW={'7xl'} as='section'>

@@ -1,5 +1,6 @@
 import { HeroComponent, Stats } from '../../components/GithubPageComps';
-import GithubAPI from '../../services/githubAPI';
+// import GithubAPI from '../../services/githubAPI';
+import { getUser } from '../../services/githubGQL';
 
 const GithubPage = ({ user }) => {
     return (
@@ -13,9 +14,7 @@ const GithubPage = ({ user }) => {
 export default GithubPage;
 
 export const getStaticProps = async () => {
-    const github = new GithubAPI();
-
-    const user = await github.getMe();
+    const user = await getUser('Rahat47');
 
     return {
         props: {
