@@ -1,5 +1,4 @@
 import { HeroComponent, Stats } from '../../components/GithubPageComps';
-// import GithubAPI from '../../services/githubAPI';
 import { getUser } from '../../services/githubGQL';
 
 const GithubPage = ({ user }) => {

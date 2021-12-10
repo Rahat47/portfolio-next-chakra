@@ -1,3 +1,8 @@
+// !!! Important !!!
+// !!! This file is currently not used !!!
+// !!! It is here for reference only !!!
+// !!! The purpose of this file is the use the Github REST API !!!
+
 import axios from 'axios';
 
 class GithubAPI {

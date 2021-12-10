@@ -17,6 +17,7 @@ import {
     StatGroup,
     Link,
 } from '@chakra-ui/react';
+import CountUp from 'react-countup';
 
 import { FaRegCalendarAlt, FaRegUser } from 'react-icons/fa';
 import { IoLocationOutline } from 'react-icons/io5';
@@ -100,7 +101,12 @@ const HeroComponent = ({ user }) => {
                         <StatGroup mt={8}>
                             <Stat>
                                 <StatNumber>
-                                    {user.repositories.totalCount}
+                                    <CountUp
+                                        start={0}
+                                        end={user.repositories.totalCount}
+                                        duration={2}
+                                        delay={1}
+                                    />
                                 </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Repositories
@@ -108,7 +114,12 @@ const HeroComponent = ({ user }) => {
                             </Stat>
                             <Stat>
                                 <StatNumber>
-                                    {user.followers.totalCount}
+                                    <CountUp
+                                        start={0}
+                                        end={user.followers.totalCount}
+                                        duration={1}
+                                        delay={1}
+                                    />
                                 </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Followers
@@ -117,10 +128,31 @@ const HeroComponent = ({ user }) => {
 
                             <Stat>
                                 <StatNumber>
-                                    {user.following.totalCount}
+                                    <CountUp
+                                        start={0}
+                                        end={user.following.totalCount}
+                                        duration={1}
+                                        delay={1}
+                                    />
                                 </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Following
+                                </StatLabel>
+                            </Stat>
+                            <Stat>
+                                <StatNumber>
+                                    <CountUp
+                                        start={0}
+                                        end={
+                                            user.contributionsCollection
+                                                .totalCommitContributions
+                                        }
+                                        duration={2}
+                                        delay={1}
+                                    />
+                                </StatNumber>
+                                <StatLabel textTransform='uppercase'>
+                                    Commits
                                 </StatLabel>
                             </Stat>
                         </StatGroup>
