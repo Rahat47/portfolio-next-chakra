@@ -7,13 +7,14 @@ import {
     Heading,
     Text,
 } from '@chakra-ui/react';
-import { PieTopLang } from '.';
-import { getUserReposPrimayLang } from '../../services/githubGQL';
-import MostStarredLine from './MostStarredLine';
+import { PieTopLang, MostStarredLine, CommitCalender } from '.';
+import { getCommits, getUserReposPrimayLang } from '../../services/githubGQL';
+import moment from 'moment';
 
 const Stats = ({ name }) => {
     const [topLangs, setTopLangs] = useState([]);
     const [starsByLangs, setStarsByLangs] = useState([]);
+    const [commitsPerDay, setCommitsPerDay] = useState([]);
 
     const randomColor = () => {
         // beautiful pastel colors
@@ -78,10 +79,28 @@ const Stats = ({ name }) => {
         setStarsByLangs(starsByLangs);
     }, []);
 
+    const getCommitsPerDay = useCallback(async () => {
+        const commitsPerRepos = await getCommits('Rahat47');
+
+        const commitsPerDay = [];
+
+        commitsPerRepos.forEach(repo => {
+            repo.contributions.nodes.forEach(contribution => {
+                commitsPerDay.push({
+                    day: moment(contribution.occurredAt).format('YYYY-MM-DD'),
+                    value: contribution.commitCount,
+                });
+            });
+        });
+
+        setCommitsPerDay(commitsPerDay);
+    }, []);
+
     useEffect(() => {
         getTopLangs();
         getStarsByLangs();
-    }, [getStarsByLangs, getTopLangs]);
+        getCommitsPerDay();
+    }, [getStarsByLangs, getTopLangs, getCommitsPerDay]);
 
     return (
         <Container maxW={'7xl'} as='section'>
@@ -101,25 +120,22 @@ const Stats = ({ name }) => {
                     {name} Stats
                 </Heading>
 
-                <SimpleGrid
-                    mt={6}
-                    columns={{
-                        base: 1,
-                        md: 2,
-                    }}
-                    placeItems='center'
-                    gap={6}
-                >
+                <SimpleGrid mt={6} columns={1} placeItems='center' gap={6}>
                     <Box
                         rounded='lg'
                         bg='gray.700'
                         shadow='xl'
-                        height='md'
+                        height='xl'
                         width='full'
                         padding={20}
                         pt={2}
                     >
-                        <Text py={4} fontSize='2xl' fontWeight={300}>
+                        <Text
+                            py={4}
+                            fontSize='2xl'
+                            fontWeight={300}
+                            color={useColorModeValue('white', 'whiteAlpha.900')}
+                        >
                             Top Languages
                         </Text>
                         <PieTopLang data={topLangs} />
@@ -129,18 +145,41 @@ const Stats = ({ name }) => {
                         rounded='lg'
                         bg='gray.700'
                         shadow='xl'
-                        height='md'
+                        height='xl'
                         width='full'
                         padding={20}
                         pt={2}
                     >
-                        <Text py={2} fontSize='2xl' fontWeight={300}>
+                        <Text
+                            py={2}
+                            fontSize='2xl'
+                            fontWeight={300}
+                            color={useColorModeValue('white', 'whiteAlpha.900')}
+                        >
                             Top Language By Stars
                         </Text>
                         <MostStarredLine rawData={starsByLangs} />
                     </Box>
 
-                    <h1>Chart </h1>
+                    <Box
+                        rounded='lg'
+                        bg='gray.700'
+                        shadow='xl'
+                        height='xl'
+                        width='full'
+                        padding={20}
+                        pt={2}
+                    >
+                        <Text
+                            py={2}
+                            fontSize='2xl'
+                            fontWeight={300}
+                            color={useColorModeValue('white', 'whiteAlpha.900')}
+                        >
+                            Commits This Year
+                        </Text>
+                        <CommitCalender data={commitsPerDay} />
+                    </Box>
                 </SimpleGrid>
             </Box>
         </Container>
