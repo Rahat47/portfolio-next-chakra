@@ -95,7 +95,7 @@ export default function Hero() {
                             size='lg'
                         >
                             <Link href='/projects' scroll={false}>
-                                <a>Explore More</a>
+                                <a>Explore Works</a>
                             </Link>
                         </Button>
                         <Button

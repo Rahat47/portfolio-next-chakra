@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 import { skills } from '../assets/data/skills';
-import { SectionHeading, Skill } from '../components';
+import { NewBadge, SectionHeading, Skill } from '../components';
 
 export default function About() {
     return (
@@ -21,6 +21,7 @@ export default function About() {
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <Stack spacing={4}>
                     <SectionHeading title='About Me' />
+                    <NewBadge title='Checkout My Awesome Github Tool' />
                     <Heading>Rayhan Hossain Rahat</Heading>
                     <Text
                         fontFamily='Roboto'
