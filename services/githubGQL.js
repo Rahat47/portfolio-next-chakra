@@ -136,3 +136,36 @@ export const getLinesOfCode = async (username) => {
     totalRepos
   }
 }
+
+
+export const getUserRepos = async (username) => {
+  const query = gql`
+    query GetUserRepos($username: String!) {
+        user(login: $username) {
+          repositories(first: 100, isFork: false, privacy: PUBLIC, orderBy: {field: CREATED_AT, direction: DESC}) {
+            nodes {
+              createdAt
+              description
+              forkCount
+              homepageUrl
+              name
+              url
+              stargazerCount
+              diskUsage
+              id
+              nameWithOwner
+              primaryLanguage {
+                color
+                name
+              }
+              visibility
+            }
+          }
+        }
+      }
+    `
+  const response = await client.request(query, { username });
+
+  return response.user.repositories.nodes;
+
+}

@@ -9,11 +9,7 @@ import {
     useBreakpointValue,
 } from '@chakra-ui/react';
 import { PieTopLang, MostStarredLine, CommitCalender } from '.';
-import {
-    getCommits,
-    getUserReposPrimayLang,
-    getLinesOfCode,
-} from '../../services/githubGQL';
+import { getCommits, getUserReposPrimayLang } from '../../services/githubGQL';
 import moment from 'moment';
 
 const Stats = ({ name, username }) => {
@@ -101,17 +97,10 @@ const Stats = ({ name, username }) => {
         setCommitsPerDay(commitsPerDay);
     }, [username]);
 
-    // const getTotalLinesOfCode = useCallback(async () => {
-    //     const { totalLinesOfcode } = await getLinesOfCode('Rahat47');
-
-    //     console.log(totalLinesOfcode);
-    // }, []);
-
     useEffect(() => {
         getTopLangs();
         getStarsByLangs();
         getCommitsPerDay();
-        // getTotalLinesOfCode();
     }, [getStarsByLangs, getTopLangs, getCommitsPerDay]);
 
     return (
