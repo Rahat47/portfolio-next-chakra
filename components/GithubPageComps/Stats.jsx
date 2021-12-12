@@ -6,6 +6,7 @@ import {
     SimpleGrid,
     Heading,
     Text,
+    useBreakpointValue,
 } from '@chakra-ui/react';
 import { PieTopLang, MostStarredLine, CommitCalender } from '.';
 import {
@@ -15,7 +16,7 @@ import {
 } from '../../services/githubGQL';
 import moment from 'moment';
 
-const Stats = ({ name }) => {
+const Stats = ({ name, username }) => {
     const [topLangs, setTopLangs] = useState([]);
     const [starsByLangs, setStarsByLangs] = useState([]);
     const [commitsPerDay, setCommitsPerDay] = useState([]);
@@ -40,7 +41,7 @@ const Stats = ({ name }) => {
     // then It counts the number of repositories in each language
     // finally it creates an array of objects with the language and the number of repositories in that language for the chart to understand
     const getTopLangs = useCallback(async () => {
-        const repos = await getUserReposPrimayLang('Rahat47');
+        const repos = await getUserReposPrimayLang(username);
 
         const topLangs = {};
         repos.forEach(repo => {
@@ -59,10 +60,10 @@ const Stats = ({ name }) => {
         }));
 
         setTopLangs(topLangsArr);
-    }, []);
+    }, [username]);
 
     const getStarsByLangs = useCallback(async () => {
-        const repos = await getUserReposPrimayLang('Rahat47');
+        const repos = await getUserReposPrimayLang(username);
 
         const langs = {};
 
@@ -81,10 +82,10 @@ const Stats = ({ name }) => {
         }));
 
         setStarsByLangs(starsByLangs);
-    }, []);
+    }, [username]);
 
     const getCommitsPerDay = useCallback(async () => {
-        const commitsPerRepos = await getCommits('Rahat47');
+        const commitsPerRepos = await getCommits(username);
 
         const commitsPerDay = [];
 
@@ -98,7 +99,7 @@ const Stats = ({ name }) => {
         });
 
         setCommitsPerDay(commitsPerDay);
-    }, []);
+    }, [username]);
 
     // const getTotalLinesOfCode = useCallback(async () => {
     //     const { totalLinesOfcode } = await getLinesOfCode('Rahat47');
@@ -138,8 +139,12 @@ const Stats = ({ name }) => {
                         shadow='xl'
                         height='xl'
                         width='full'
-                        padding={20}
+                        padding={useBreakpointValue({
+                            base: 0,
+                            lg: 20,
+                        })}
                         pt={2}
+                        overflow={'hidden'}
                     >
                         <Text
                             py={4}
@@ -158,7 +163,10 @@ const Stats = ({ name }) => {
                         shadow='xl'
                         height='xl'
                         width='full'
-                        padding={20}
+                        padding={useBreakpointValue({
+                            base: 0,
+                            lg: 20,
+                        })}
                         pt={2}
                     >
                         <Text
@@ -178,7 +186,10 @@ const Stats = ({ name }) => {
                         shadow='xl'
                         height='xl'
                         width='full'
-                        padding={20}
+                        padding={useBreakpointValue({
+                            base: 0,
+                            lg: 20,
+                        })}
                         pt={2}
                     >
                         <Text

@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from 'react';
 import {
     chakra,
     Container,
@@ -16,14 +17,45 @@ import {
     StatNumber,
     StatGroup,
     Link,
+    Button,
+    useDisclosure,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalOverlay,
+    ModalHeader,
+    Input,
 } from '@chakra-ui/react';
 import CountUp from 'react-countup';
 
 import { FaRegCalendarAlt, FaRegUser } from 'react-icons/fa';
 import { IoLocationOutline } from 'react-icons/io5';
 import moment from 'moment';
+import { getLinesOfCode, getUser } from '../../services/githubGQL';
 
-const HeroComponent = ({ user, linesOfCode }) => {
+const HeroComponent = props => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const [user, setUser] = useState(props.user);
+    const [linesOfCode, setLinesOfCode] = useState(props.linesOfCode);
+
+    const getUserDetails = useCallback(async () => {
+        const userDetails = await getUser(props.username);
+
+        setUser(userDetails);
+    }, [props.username]);
+
+    const getLinesOfCodeA = useCallback(async () => {
+        const { totalLinesOfcode } = await getLinesOfCode(props.username);
+        setLinesOfCode(totalLinesOfcode);
+    }, [props.username]);
+
+    useEffect(() => {
+        getUserDetails();
+        getLinesOfCodeA();
+    }, [getUserDetails, getLinesOfCodeA]);
+
     return (
         <chakra.section bg='gray.800'>
             <Container maxW='7xl'>
@@ -103,7 +135,7 @@ const HeroComponent = ({ user, linesOfCode }) => {
                                 <StatNumber>
                                     <CountUp
                                         start={0}
-                                        end={user.repositories.totalCount}
+                                        end={user?.repositories?.totalCount}
                                         duration={2}
                                         delay={1}
                                     />
@@ -116,7 +148,7 @@ const HeroComponent = ({ user, linesOfCode }) => {
                                 <StatNumber>
                                     <CountUp
                                         start={0}
-                                        end={user.followers.totalCount}
+                                        end={user?.followers?.totalCount}
                                         duration={1}
                                         delay={1}
                                     />
@@ -130,7 +162,7 @@ const HeroComponent = ({ user, linesOfCode }) => {
                                 <StatNumber>
                                     <CountUp
                                         start={0}
-                                        end={user.following.totalCount}
+                                        end={user?.following?.totalCount}
                                         duration={1}
                                         delay={1}
                                     />
@@ -144,8 +176,8 @@ const HeroComponent = ({ user, linesOfCode }) => {
                                     <CountUp
                                         start={0}
                                         end={
-                                            user.contributionsCollection
-                                                .totalCommitContributions
+                                            user?.contributionsCollection
+                                                ?.totalCommitContributions
                                         }
                                         duration={2}
                                         delay={1}
@@ -169,7 +201,53 @@ const HeroComponent = ({ user, linesOfCode }) => {
                                 </StatLabel>
                             </Stat>
                         </StatGroup>
+
+                        <Button variant={'ghost'} my={6} onClick={onOpen}>
+                            Find Your Github Profile
+                        </Button>
+
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>
+                                    <Heading>Find Your Github Profile</Heading>
+                                </ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <Text>
+                                        Enter your github username and the app
+                                        will find your profile details.
+                                    </Text>
+                                    <form
+                                        onSubmit={e => {
+                                            e.preventDefault();
+                                            props.setUsername(
+                                                e.target.username.value
+                                            );
+                                            onClose();
+                                        }}
+                                    >
+                                        <Input
+                                            name='username'
+                                            placeholder='Github Username'
+                                            mt={4}
+                                            id='username'
+                                        />
+                                        <Button
+                                            mt={4}
+                                            colorScheme='blue'
+                                            type='submit'
+                                            variant='ghost'
+                                        >
+                                            Find Profile
+                                        </Button>
+                                    </form>
+                                </ModalBody>
+                            </ModalContent>
+                        </Modal>
                     </Box>
+
+                    {/* An input to put username */}
                 </Center>
             </Container>
         </chakra.section>

@@ -1,11 +1,19 @@
+import { useState } from 'react';
 import { HeroComponent, Stats } from '../../components/GithubPageComps';
 import { getLinesOfCode, getUser } from '../../services/githubGQL';
 
 const GithubPage = ({ user, totalLinesOfcode }) => {
+    const [username, setUsername] = useState('Rahat47');
+
     return (
         <>
-            <HeroComponent user={user} linesOfCode={totalLinesOfcode} />
-            <Stats name={user.name} />
+            <HeroComponent
+                username={username}
+                user={user}
+                linesOfCode={totalLinesOfcode}
+                setUsername={setUsername}
+            />
+            <Stats username={username} name={user.name} />
         </>
     );
 };
