@@ -206,7 +206,12 @@ const HeroComponent = props => {
                             Find Your Github Profile
                         </Button>
 
-                        <Modal isOpen={isOpen} onClose={onClose}>
+                        <Modal
+                            isOpen={isOpen}
+                            onClose={onClose}
+                            size='xl'
+                            isCentered
+                        >
                             <ModalOverlay />
                             <ModalContent>
                                 <ModalHeader>

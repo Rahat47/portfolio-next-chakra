@@ -5,6 +5,7 @@ import { Layout } from '../components';
 import nProgress from 'nprogress';
 import '../styles/globals.css'
 import { DefaultSeo } from 'next-seo';
+import { theme } from '../styles/theme';
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
@@ -52,7 +53,7 @@ function MyApp({ Component, pageProps }) {
                     ],
                 }}
             />
-            <ChakraProvider>
+            <ChakraProvider theme={theme}>
                 <Layout>
                     <Component {...pageProps} key={router.route} />
                 </Layout>

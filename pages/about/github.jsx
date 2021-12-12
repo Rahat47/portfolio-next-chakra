@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { HeroComponent, Stats } from '../../components/GithubPageComps';
-import { getLinesOfCode, getUser } from '../../services/githubGQL';
+import { HeroComponent, Repos, Stats } from '../../components/GithubPageComps';
+import {
+    getLinesOfCode,
+    getUser,
+    getUserRepos,
+} from '../../services/githubGQL';
 
-const GithubPage = ({ user, totalLinesOfcode }) => {
+const GithubPage = ({ user, totalLinesOfcode, repos }) => {
     const [username, setUsername] = useState('Rahat47');
 
     return (
@@ -14,6 +18,7 @@ const GithubPage = ({ user, totalLinesOfcode }) => {
                 setUsername={setUsername}
             />
             <Stats username={username} name={user.name} />
+            <Repos repos={repos} />
         </>
     );
 };
@@ -25,10 +30,13 @@ export const getStaticProps = async () => {
 
     const { totalLinesOfcode } = await getLinesOfCode('Rahat47');
 
+    const repos = await getUserRepos('Rahat47');
+
     return {
         props: {
             user,
             totalLinesOfcode,
+            repos,
         },
     };
 };
