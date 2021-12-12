@@ -8,7 +8,11 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { PieTopLang, MostStarredLine, CommitCalender } from '.';
-import { getCommits, getUserReposPrimayLang } from '../../services/githubGQL';
+import {
+    getCommits,
+    getUserReposPrimayLang,
+    getLinesOfCode,
+} from '../../services/githubGQL';
 import moment from 'moment';
 
 const Stats = ({ name }) => {
@@ -96,10 +100,17 @@ const Stats = ({ name }) => {
         setCommitsPerDay(commitsPerDay);
     }, []);
 
+    // const getTotalLinesOfCode = useCallback(async () => {
+    //     const { totalLinesOfcode } = await getLinesOfCode('Rahat47');
+
+    //     console.log(totalLinesOfcode);
+    // }, []);
+
     useEffect(() => {
         getTopLangs();
         getStarsByLangs();
         getCommitsPerDay();
+        // getTotalLinesOfCode();
     }, [getStarsByLangs, getTopLangs, getCommitsPerDay]);
 
     return (

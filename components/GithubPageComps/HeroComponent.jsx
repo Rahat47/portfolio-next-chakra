@@ -23,7 +23,7 @@ import { FaRegCalendarAlt, FaRegUser } from 'react-icons/fa';
 import { IoLocationOutline } from 'react-icons/io5';
 import moment from 'moment';
 
-const HeroComponent = ({ user }) => {
+const HeroComponent = ({ user, linesOfCode }) => {
     return (
         <chakra.section bg='gray.800'>
             <Container maxW='7xl'>
@@ -153,6 +153,19 @@ const HeroComponent = ({ user }) => {
                                 </StatNumber>
                                 <StatLabel textTransform='uppercase'>
                                     Commits
+                                </StatLabel>
+                            </Stat>
+                            <Stat>
+                                <StatNumber>
+                                    <CountUp
+                                        start={0}
+                                        end={linesOfCode}
+                                        duration={2}
+                                        delay={1}
+                                    />
+                                </StatNumber>
+                                <StatLabel textTransform='uppercase'>
+                                    Lines Of Code
                                 </StatLabel>
                             </Stat>
                         </StatGroup>

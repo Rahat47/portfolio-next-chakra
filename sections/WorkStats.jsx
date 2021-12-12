@@ -2,7 +2,7 @@ import { Box, chakra, SimpleGrid } from '@chakra-ui/react';
 import { FcCommandLine, FcGlobe, FcInspection } from 'react-icons/fc';
 import { StatsCard } from '../components';
 
-export default function WorkStats() {
+export default function WorkStats({ totalLinesOfcode, totalRepos }) {
     return (
         <Box
             as='section'
@@ -26,13 +26,13 @@ export default function WorkStats() {
             >
                 <StatsCard
                     title={'Projects'}
-                    stat={85}
+                    stat={totalRepos}
                     suffix={' +'}
                     icon={<FcInspection size={'3em'} />}
                 />
                 <StatsCard
                     title={'Lines Of Code'}
-                    stat={50000}
+                    stat={totalLinesOfcode}
                     suffix={' +'}
                     icon={<FcCommandLine size={'3em'} />}
                 />

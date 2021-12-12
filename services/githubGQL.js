@@ -48,7 +48,7 @@ export const getUserReposPrimayLang = async (username) => {
   const query = gql`
     query GetReposPrimaryLang($username: String!) {
         user(login: $username) {
-          repositories(isFork: false, first: 100) {
+          repositories(isFork: false, last: 100) {
             nodes {
               primaryLanguage {
                 name
@@ -90,7 +90,7 @@ export const getCommits = async (username) => {
         user(login: $username) {
           contributionsCollection {
             commitContributionsByRepository {
-              contributions(first: 100) {
+              contributions(last: 100) {
               nodes {
                 occurredAt
                 commitCount
@@ -103,4 +103,36 @@ export const getCommits = async (username) => {
     `
   const response = await client.request(query, { username });
   return response.user.contributionsCollection.commitContributionsByRepository;
+}
+
+
+export const getLinesOfCode = async (username) => {
+  const query = gql`
+    query GetLinesOfCode($username: String!) {
+        user(login: $username) {
+          repositories(last: 100) {
+            nodes {
+              languages {
+                totalSize
+              }
+            }
+            totalCount
+          }
+        }
+      }
+    `
+  const response = await client.request(query, { username });
+
+
+  const totalLinesOfcode = response?.user?.repositories?.nodes?.reduce((acc, repo) => {
+    return acc + repo.languages.totalSize;
+  }, 0);
+
+  const totalRepos = response.user.repositories.totalCount;
+
+
+  return {
+    totalLinesOfcode,
+    totalRepos
+  }
 }
