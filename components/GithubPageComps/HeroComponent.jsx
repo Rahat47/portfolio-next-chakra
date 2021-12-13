@@ -26,7 +26,6 @@ import {
     ModalOverlay,
     ModalHeader,
     Input,
-    useToast,
 } from '@chakra-ui/react';
 import CountUp from 'react-countup';
 
