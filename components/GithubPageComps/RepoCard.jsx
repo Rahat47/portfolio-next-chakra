@@ -10,7 +10,7 @@ import {
     TagLeftIcon,
 } from '@chakra-ui/react';
 
-import { AiOutlineStar, AiOutlineFork } from 'react-icons/ai';
+import { AiOutlineStar, AiOutlineFork, AiOutlineInbox } from 'react-icons/ai';
 const RepoCard = ({ repo }) => {
     return (
         <Flex
@@ -78,14 +78,14 @@ const RepoCard = ({ repo }) => {
                 </Box>
                 <Box>
                     <Stack
-                        spacing={4}
+                        spacing={3}
                         alignItems='center'
                         mt={6}
                         color={useColorModeValue('gray.700', 'gray.200')}
                         isInline
                         justify='center'
                     >
-                        <Tag colorScheme='yellow'>
+                        <Tag size='sm' colorScheme='yellow'>
                             <Box
                                 w={4}
                                 h={4}
@@ -98,14 +98,19 @@ const RepoCard = ({ repo }) => {
                             </Text>
                         </Tag>
 
-                        <Tag colorScheme='cyan'>
+                        <Tag size='sm' colorScheme='cyan'>
                             <TagLeftIcon as={AiOutlineStar} />
                             {repo.stargazerCount}
                         </Tag>
 
-                        <Tag colorScheme='black'>
+                        <Tag size='sm' colorScheme='black'>
                             <TagLeftIcon as={AiOutlineFork} />
                             {repo.forkCount}
+                        </Tag>
+
+                        <Tag size='sm' colorScheme='purple'>
+                            <TagLeftIcon as={AiOutlineInbox} />
+                            {repo.diskUsage} kb
                         </Tag>
                     </Stack>
                 </Box>
