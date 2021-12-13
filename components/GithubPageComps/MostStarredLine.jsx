@@ -17,7 +17,7 @@ const MostStarredLine = ({ rawData }) => {
     return (
         <ResponsiveLine
             data={data}
-            margin={{ top: 50, right: 50, bottom: 100, left: 50 }}
+            margin={{ top: 50, right: 100, bottom: 100, left: 50 }}
             curve='cardinal'
             pointSize={10}
             colors={{ scheme: 'purple_blue' }}
@@ -53,6 +53,7 @@ const MostStarredLine = ({ rawData }) => {
             enableArea={true}
             enableGridX={false}
             enableGridY={false}
+            motionConfig='wobbly'
         />
     );
 };

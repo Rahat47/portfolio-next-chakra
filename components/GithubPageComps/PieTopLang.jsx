@@ -64,6 +64,7 @@ const PieTopLang = ({ data }) => {
                     ],
                 },
             ]}
+            motionConfig='wobbly'
         />
     );
 };
