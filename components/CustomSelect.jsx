@@ -1,6 +1,7 @@
 import {
     chakra,
     omitThemingProps,
+    ScaleFade,
     useFormControl,
     useMergeRefs,
     useMultiStyleConfig,
@@ -86,17 +87,19 @@ const CustomSelect = forwardRef((props, ownRef) => {
                     },
                 })}
             >
-                <chakra.ul __css={styles.menu} {...getMenuProps()}>
-                    {isOpen &&
-                        validChildren.map((item, index) =>
-                            cloneElement(item, {
-                                ...getItemProps({
-                                    item: item.props.value,
-                                    index,
-                                }),
-                            })
-                        )}
-                </chakra.ul>
+                <ScaleFade initialScale={0.8} in={isOpen}>
+                    <chakra.ul __css={styles.menu} {...getMenuProps()}>
+                        {isOpen &&
+                            validChildren.map((item, index) =>
+                                cloneElement(item, {
+                                    ...getItemProps({
+                                        item: item.props.value,
+                                        index,
+                                    }),
+                                })
+                            )}
+                    </chakra.ul>
+                </ScaleFade>
             </chakra.div>
         </chakra.div>
     );

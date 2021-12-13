@@ -17,13 +17,13 @@ const RepoCard = ({ repo }) => {
             w='full'
             alignItems='stretch'
             justifyContent='center'
-            as='a'
+            as={Link}
             href={repo.url}
-            rel='noopener noreferrer'
-            target='_blank'
+            isExternal
             transition='all 0.2s ease-in-out'
             _hover={{
                 transform: 'scale(1.05)',
+                textDecoration: 'none',
             }}
         >
             <Box
