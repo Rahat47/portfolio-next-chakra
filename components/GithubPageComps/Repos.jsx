@@ -9,24 +9,39 @@ import {
     useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { RepoCard } from '.';
 import { CustomSelect, Option } from '..';
 import FlipMove from 'react-flip-move';
-const Repos = ({ repos }) => {
+import { getUserRepos } from '../../services/githubGQL';
+
+const Repos = ({ repos, username }) => {
+    const [repositories, setRepositories] = useState(repos);
     const [filter, setFilter] = useState('stargazerCount');
     const [filteredRepos, setFilteredRepos] = useState([]);
+
+    const getRepos = useCallback(async () => {
+        const data = await getUserRepos(username);
+
+        setRepositories(data);
+    }, [username]);
 
     const LIMIT = 9;
 
     useEffect(() => {
-        const sortedByName = repos.sort((a, b) => a.name.localeCompare(b.name));
+        const sortedByName = repositories.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
         const sorted = sortedByName.sort((a, b) => b[filter] - a[filter]);
 
         const sliced = sorted.slice(0, LIMIT);
 
         setFilteredRepos(sliced);
-    }, [filter, repos]);
+    }, [filter, repositories]);
+
+    useEffect(() => {
+        getRepos();
+    }, [getRepos]);
 
     return (
         <Container as='section' maxW='7xl'>

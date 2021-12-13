@@ -18,7 +18,7 @@ const GithubPage = ({ user, totalLinesOfcode, repos }) => {
                 setUsername={setUsername}
             />
             <Stats username={username} name={user.name} />
-            <Repos repos={repos} />
+            <Repos repos={repos} username={username} />
         </>
     );
 };
