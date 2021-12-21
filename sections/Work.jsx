@@ -66,7 +66,7 @@ export default function Work({ works }) {
                                 rel='noopener noreferrer'
                                 color='blue.400'
                             >
-                                {props.title}
+                                <a>{props.title}</a>
                             </Link>
                         </chakra.dt>
 
@@ -85,8 +85,9 @@ export default function Work({ works }) {
                     <chakra.dd
                         mt={2}
                         color={useColorModeValue('gray.500', 'gray.400')}
-                        lineHeight='1.5'
+                        lineHeight='1.4'
                         fontFamily='Roboto'
+                        fontSize='sm'
                     >
                         {props.children}
                     </chakra.dd>

@@ -90,7 +90,7 @@ const RepoCard = ({ repo }) => {
                                 w={4}
                                 h={4}
                                 borderRadius='full'
-                                bg={repo.primaryLanguage.color}
+                                bg={repo?.primaryLanguage?.color || 'gray.200'}
                                 mr={1}
                             />
                             <Text fontSize='md'>
