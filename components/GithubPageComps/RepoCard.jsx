@@ -64,8 +64,8 @@ const RepoCard = ({ repo }) => {
                         mt={2}
                         color={useColorModeValue('gray.800', 'white')}
                     >
-                        {repo.name.length > 20
-                            ? `${repo.name.substring(0, 20)}...`
+                        {repo.name?.length > 20
+                            ? `${repo.name?.substring(0, 20)}...`
                             : repo.name}
                     </chakra.h1>
                     <chakra.p
@@ -94,7 +94,7 @@ const RepoCard = ({ repo }) => {
                                 mr={1}
                             />
                             <Text fontSize='md'>
-                                {repo.primaryLanguage.name}
+                                {repo?.primaryLanguage?.name || 'No language'}
                             </Text>
                         </Tag>
 

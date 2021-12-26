@@ -12,16 +12,19 @@ export default async function sendEmailHandler(req, res) {
         {
             to: req.body.email,
             from: 'Rayhan Rahat <djrayhan8@gmail.com>',
-            templateId: process.env.SENDGRID_TEMPLATE_ID,
+            templateId: process.env.SENDGRID_TEMPLATE_ID_PERSONAL,
             dynamicTemplateData: {
                 name: req.body.name,
-                message: req.body.message
+                message: req.body.message,
+                firstName: req.body.name.split(' ')[0],
+                email: req.body.email,
+                phone: req.body.phone
             }
         },
         {
             to: 'djrayhan8@gmail.com',
             from: 'Rayhan Rahat <djrayhan8@gmail.com>',
-            templateId: process.env.SENDGRID_TEMPLATE_ID_PERSONAL,
+            templateId: process.env.SENDGRID_TEMPLATE_ID,
             dynamicTemplateData: {
                 name: req.body.name,
                 email: req.body.email,
