@@ -12,9 +12,9 @@ import { Link as ScrollLink } from 'react-scroll';
 import { BsStars } from 'react-icons/bs';
 import { MdReadMore } from 'react-icons/md';
 
-import projectImg from '../assets/images/RahatGithub.png';
+// import projectImg from '../assets/images/RahatGithub.png';
 
-const CHImage = chakra(Image);
+// const CHImage = chakra(Image);
 
 const ProjectsHero = () => {
     return (
@@ -97,7 +97,7 @@ const ProjectsHero = () => {
                     </Button>
                 </Stack>
             </Box>
-            <Box
+            {/* <Box
                 w={{ base: 'full', md: 10 / 12 }}
                 mx='auto'
                 mt={20}
@@ -112,7 +112,7 @@ const ProjectsHero = () => {
                     src={projectImg}
                     alt='Rahat github profile Screen Shot'
                 />
-            </Box>
+            </Box> */}
         </Box>
     );
 };

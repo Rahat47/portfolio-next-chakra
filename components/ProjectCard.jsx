@@ -88,14 +88,7 @@ const ProjectCard = ({ project }) => {
                     <Box>
                         <Flex justifyContent='space-between'>
                             <HStack spacing={4}>
-                                <Tag
-                                    fontSize='xs'
-                                    textTransform='uppercase'
-                                    color={useColorModeValue(
-                                        'brand.600',
-                                        'brand.400'
-                                    )}
-                                >
+                                <Tag fontSize='xs' textTransform='uppercase'>
                                     {project.category.title}
                                 </Tag>
                             </HStack>
@@ -116,9 +109,13 @@ const ProjectCard = ({ project }) => {
                                 fontSize='2xl'
                                 mt={2}
                                 _hover={{
-                                    color: 'gray.600',
+                                    color: useColorModeValue(
+                                        'gray.600',
+                                        'gray.400'
+                                    ),
                                     textDecor: 'underline',
                                 }}
+                                transition={`all 0.3s ease`}
                             >
                                 {project.title}
                             </ChakraLink>

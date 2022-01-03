@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 import {
@@ -40,6 +41,8 @@ export default function Navbar() {
     }, [scrollY]);
     const cl = useColorModeValue('gray.800', 'white');
     const mobileNav = useDisclosure();
+
+    const router = useRouter();
 
     const downloadResume = () => {
         const resumeLink = '/resume.pdf';
@@ -140,6 +143,7 @@ export default function Navbar() {
                                     fontSize='md'
                                     _hover={{ color: cl }}
                                     _focus={{ boxShadow: 'none' }}
+                                    onClick={() => router.push(item.url)}
                                 >
                                     <Link scroll={false} href={item.url}>
                                         {item.name}

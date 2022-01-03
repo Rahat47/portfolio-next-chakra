@@ -42,7 +42,7 @@ export default function Hero() {
                             Hi,There
                         </motion.span>{' '}
                         <br />
-                        <Text as={'span'} color={'green.400'}>
+                        <Text as={'span'} color='teal.400'>
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -68,7 +68,7 @@ export default function Hero() {
                             <br />
                             Also working as a Freelancer at{' '}
                             <ChLink
-                                color={'blue.500'}
+                                color={'blue.300'}
                                 href='https://www.fiverr.com/rh_rahat_47?up_rollout=true'
                                 target='_blank'
                                 rel='noopener noreferrer'
@@ -85,13 +85,10 @@ export default function Hero() {
                         position={'relative'}
                     >
                         <Button
-                            colorScheme={'green'}
-                            bg={'green.400'}
+                            colorScheme={'blue'}
+                            // bg={'teal.400'}
                             rounded={'full'}
                             px={6}
-                            _hover={{
-                                bg: 'green.500',
-                            }}
                             size='lg'
                         >
                             <Link href='/projects' scroll={false}>

@@ -1,17 +1,11 @@
-import {
-    Container,
-    SimpleGrid,
-    Stack,
-    Heading,
-    VStack,
-    Tag,
-    Text,
-    Box,
-    Flex,
-} from '@chakra-ui/react';
+import { Container, SimpleGrid, Stack, Tag, Box, Flex } from '@chakra-ui/react';
 import moment from 'moment';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { ProfileCard, SimpleHeading, SingleFact } from '../components';
+import { BsFillCalendarCheckFill } from 'react-icons/bs';
+import { IoConstructOutline } from 'react-icons/io5';
+import { GiDuration } from 'react-icons/gi';
+import { BiCodeAlt, BiCategoryAlt } from 'react-icons/bi';
 
 const ProjectDetailDesc = ({
     started,
@@ -27,26 +21,37 @@ const ProjectDetailDesc = ({
         <Container maxW='8xl' as='section' py={20}>
             <SimpleGrid columns={[1, 1, 2]} spacing={10}>
                 <Flex align='center' justify='space-evenly' direction='column'>
-                    <Stack spacing={10}>
+                    <Stack spacing={10} w={['100%', '80%', '80%', '60%']}>
                         <SimpleHeading title='Quick Facts' />
-                        <Stack spacing={4}>
+                        <SimpleGrid columns={1} spacing={5}>
                             <SingleFact
+                                icon={BsFillCalendarCheckFill}
                                 title='Created At'
                                 content={moment(started).format('MMM YYYY')}
                             />
                             <SingleFact
+                                icon={IoConstructOutline}
                                 title='Project Type'
                                 content={types.join('/')}
                             />
                             <SingleFact
+                                icon={GiDuration}
                                 title='Duration'
                                 content={`${duration} ${
                                     duration > 1 ? 'days' : 'day'
                                 }`}
                             />
-                            <SingleFact title='Language' content={language} />
-                            <SingleFact title='Category' content={category} />
-                        </Stack>
+                            <SingleFact
+                                title='Language'
+                                content={language}
+                                icon={BiCodeAlt}
+                            />
+                            <SingleFact
+                                title='Category'
+                                content={category}
+                                icon={BiCategoryAlt}
+                            />
+                        </SimpleGrid>
                     </Stack>
 
                     <Stack spacing={10}>
