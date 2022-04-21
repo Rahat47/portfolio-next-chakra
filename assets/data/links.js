@@ -2,7 +2,7 @@ export const contactExternalLinks = [
     {
         key: 'fiverr',
         name: 'Fiverr',
-        link: 'https://www.fiverr.com/rh_rahat_47?up_rollout=true',
+        link: 'https://www.fiverr.com/rh_rahat_47',
         color: 'green',
     },
     {

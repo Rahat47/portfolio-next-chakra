@@ -11,6 +11,8 @@
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/inter": "^4.5.7",
+    "@fontsource/raleway": "^4.5.5",
     "@graphcms/rich-text-react-renderer": "^0.3.2",
     "@nivo/calendar": "^0.74.0",
     "@nivo/core": "^0.74.0",

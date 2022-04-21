@@ -129,5 +129,12 @@ export const theme = extendTheme({
                 colorScheme: 'teal',
             },
         },
+        fontFamily: {
+            raleway: '"Raleway", sans-serif',
+            roboto: '"Roboto", sans-serif',
+            poppins: '"Poppins", sans-serif',
+            openSans: '"Open Sans", sans-serif',
+            inter: '"Inter", sans-serif'
+        }
     },
 })

@@ -29,6 +29,7 @@ const ProjectDetailPage = ({ project }) => {
                 skills={project.skills}
                 description={project.description}
                 client={project.client}
+                reviews={project.reviews}
             />
             <ProjectDetailsImg images={project.images} />
 

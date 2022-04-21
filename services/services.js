@@ -97,6 +97,11 @@ export const getSingleProject = async (slug) => {
     query GetSingleProject($slug: String!) {
         project(where: {slug: $slug}) {
           id
+          reviews(first: 10) {
+            id
+            review
+            title
+          }
           category {
             title
             slug
@@ -140,9 +145,9 @@ export const getSingleProject = async (slug) => {
           description {
                 raw
                 html
-            }
-        }
+          }
       }
+}
       `
 
   const result = await request(graphQLEndpoint, query, { slug })

@@ -1,7 +1,20 @@
-import { Container, SimpleGrid, Stack, Tag, Box, Flex } from '@chakra-ui/react';
+import {
+    Container,
+    SimpleGrid,
+    Stack,
+    Tag,
+    Box,
+    Flex,
+    GridItem,
+} from '@chakra-ui/react';
 import moment from 'moment';
 import { RichText } from '@graphcms/rich-text-react-renderer';
-import { ProfileCard, SimpleHeading, SingleFact } from '../components';
+import {
+    ClientReview,
+    ProfileCard,
+    SimpleHeading,
+    SingleFact,
+} from '../components';
 import { BsFillCalendarCheckFill } from 'react-icons/bs';
 import { IoConstructOutline } from 'react-icons/io5';
 import { GiDuration } from 'react-icons/gi';
@@ -16,6 +29,7 @@ const ProjectDetailDesc = ({
     skills,
     description,
     client,
+    reviews,
 }) => {
     return (
         <Container maxW='8xl' as='section' py={20}>
@@ -80,6 +94,16 @@ const ProjectDetailDesc = ({
                         <ProfileCard client={client} />
                     </Box>
                 </Stack>
+                <GridItem colSpan={[1, 1, 2]}>
+                    {reviews.length > 0 &&
+                        reviews.map(review => (
+                            <ClientReview
+                                key={review.id}
+                                review={review}
+                                client={client}
+                            />
+                        ))}
+                </GridItem>
             </SimpleGrid>
         </Container>
     );
